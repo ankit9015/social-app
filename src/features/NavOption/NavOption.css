@@ -1,0 +1,23 @@
+.nav-option {
+  gap: 1rem;
+  margin: 0 1rem;
+  cursor: pointer;
+}
+
+.nav-option:hover {
+  color: var(--black);
+}
+
+.nav-option__title {
+  line-height: normal;
+}
+
+@media screen and (min-width: 500px) and (max-width: 1200px) {
+  .nav-option__title {
+    display: none;
+  }
+
+  .nav-option {
+    margin: 0 auto;
+  }
+}

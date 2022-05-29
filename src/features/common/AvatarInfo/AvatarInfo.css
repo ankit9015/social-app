@@ -1,0 +1,12 @@
+.avatar-info {
+  align-items: center;
+}
+
+.avatar-info__content {
+  flex: 1;
+  margin: 0 0.5rem;
+}
+
+.avatar-info__content * {
+  line-height: 1.6rem;
+}

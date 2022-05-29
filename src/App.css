@@ -1,51 +1,52 @@
+html {
+  font-size: 50%;
+  --gray: rgb(181, 177, 177);
+}
+
+.text-sm {
+  font-size: 1rem;
+}
+
 .App {
-  text-align: center;
+  width: 100%;
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-body {
+  width: clamp(20rem, 95%, 120rem);
+  height: calc(100% - 6rem);
+  justify-content: stretch;
+  margin: auto;
+  gap: 1rem;
+  display: flex;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.app-body__widgets {
+  width: 30rem;
+  display: none;
+}
+
+.app-main {
+  flex-grow: 1;
+  border-left: 2px solid var(--gray);
+  border-right: 2px solid var(--gray);
+}
+
+@media screen and (min-width: 500px) {
+  html {
+    font-size: 62.5%;
+  }
+
+  .app-body {
+    max-width: 700px;
   }
 }
 
-.App-header {
-  background-color: #22201c;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-.brand-title {
-  font-size: 3rem;
-  color: #d9d9d9;
-}
-
-.brand-title span {
-  color: #ffde59;
-}
-
-.brand-description {
-  font-size: 1.4rem;
-}
-
-.links {
-  display: flex;
-}
-
-.links a {
-  color: #d9d9d9;
-  font-size: 1.2rem;
-  margin: 1rem;
+@media screen and (min-width: 1000px) {
+  .app-body__widgets {
+    display: block;
+  }
+  .app-body {
+    max-width: none;
+  }
 }
