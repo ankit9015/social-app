@@ -18,7 +18,7 @@ function AvatarInfo(props) {
       />
       <div className="avatar-info__content">
         <p className="text-md">Ankit Joshi</p>
-        <p className="text-md">username</p>
+        <p className="text-md">@username</p>
       </div>
       {/* </> */}
     </div>

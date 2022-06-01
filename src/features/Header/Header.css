@@ -19,6 +19,7 @@
   transform: translateX(-50%);
   position: absolute;
   left: 50%;
+  display: none;
 }
 
 @media screen and (min-width: 500px) and (max-width: 1000px) {
@@ -29,13 +30,13 @@
   .header__menu--open {
     display: none;
   }
+
+  .header__search {
+    display: block;
+  }
 }
 
 @media screen and (min-width: 1000px) {
-  .header__search {
-    display: none;
-  }
-
   .header__menu--open {
     display: none;
   }
