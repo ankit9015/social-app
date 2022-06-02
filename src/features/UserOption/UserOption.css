@@ -12,7 +12,8 @@
 
 .user-option__modal {
   border-radius: 1rem;
-  background-color: blue;
+  background-color: var(--white);
+  border: 2px solid;
 }
 
 .user-option__modal > * {

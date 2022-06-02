@@ -1,13 +1,14 @@
 import React from "react";
-import { SearchBox } from "../common";
+import { FollowList, SearchBox } from "../common";
 
 import "./Widgets.css";
 
 function Widgets() {
   return (
-    <div className="widgets flex-column">
+    <aside className="widgets flex-column">
       <SearchBox />
-    </div>
+      <FollowList />
+    </aside>
   );
 }
 

@@ -1,5 +1,5 @@
 .sidebar {
-  width: 30rem;
+  width: 25rem;
   position: fixed;
   left: 0;
   top: 0;
@@ -107,7 +107,7 @@
     display: block;
   }
 
-  .sidebar__create-button :not(.icon),
+  .sidebar__create-button > :not(.icon),
   .sidebar .user-option .avatar-info__content,
   .sidebar .user-option .icon {
     display: none;

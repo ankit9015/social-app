@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import useWindowSize from "../../hooks/useWindowSize";
 import {
   HomeOutlinedIcon,
@@ -6,9 +6,9 @@ import {
   BookmarkBorderIcon,
   NotificationsNoneIcon,
   AccountCircleOutlinedIcon,
-  MoreHorizIcon,
   ArrowBackIcon,
   SearchIcon,
+  AddIcon,
 } from "../../icon";
 import NavOption from "../NavOption/NavOption";
 import AvatarInfo from "../common/AvatarInfo/AvatarInfo";
@@ -37,18 +37,28 @@ function Sidebar({ sidebarToggle, setSidebarToggle }) {
           </div>
         </>
       )}
-      <NavOption Icon={HomeOutlinedIcon} title="Home" />
-      <NavOption Icon={RocketOutlinedIcon} title="Explore" />
-      {isSmallScreen && <NavOption Icon={SearchIcon} title="Search" />}
-      <NavOption Icon={BookmarkBorderIcon} title="Bookmarks" />
-      <NavOption Icon={NotificationsNoneIcon} title="Notifications" />
-      <NavOption Icon={AccountCircleOutlinedIcon} title="Profile" />
+      <NavOption link="/" Icon={HomeOutlinedIcon} title="Home" />
+      <NavOption link="explore" Icon={RocketOutlinedIcon} title="Explore" />
+      {isSmallScreen && (
+        <NavOption link="search" Icon={SearchIcon} title="Search" />
+      )}
+      <NavOption link="bookmarks" Icon={BookmarkBorderIcon} title="Bookmarks" />
+      <NavOption
+        link="notifications"
+        Icon={NotificationsNoneIcon}
+        title="Notifications"
+      />
+      <NavOption
+        link="profile"
+        Icon={AccountCircleOutlinedIcon}
+        title="Profile"
+      />
       {isSmallScreen && (
         <div className="sidebar__logout-option text-md">Logout</div>
       )}
       {!isSmallScreen && (
         <button className="sidebar__create-button button button-primary">
-          <span className="text-xl icon">+</span>
+          <AddIcon className="icon" fontSize="large" />
           <span className="text-md">Create Post</span>
         </button>
       )}

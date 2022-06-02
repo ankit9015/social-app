@@ -7,6 +7,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import MenuIcon from "@mui/icons-material/Menu";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import AddIcon from "@mui/icons-material/Add";
 
 export {
   HomeOutlinedIcon,
@@ -18,4 +19,5 @@ export {
   MoreHorizIcon,
   MenuIcon,
   ArrowBackIcon,
+  AddIcon,
 };
