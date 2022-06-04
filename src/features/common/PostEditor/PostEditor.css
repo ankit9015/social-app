@@ -1,0 +1,39 @@
+.post-editor {
+  border: 2px solid;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  max-width: 60rem;
+  border-radius: 1rem;
+}
+
+.post-editor__form {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background-color: inherit;
+}
+
+.post-editor__text-input {
+  width: 100%;
+  height: 8rem;
+}
+
+.post-editor__icon-buttons {
+  flex: 1;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.modal .post-editor {
+  width: 95vw;
+  background-color: var(--global-backdrop);
+  color: var(--global-color);
+}
+
+.post-editor__post-button {
+  color: var(--global-color);
+  padding: 0 1rem;
+}

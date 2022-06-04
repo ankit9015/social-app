@@ -1,0 +1,38 @@
+.nav-option {
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.nav-option:hover {
+  color: var(--black);
+}
+
+.nav-option__title {
+  line-height: normal;
+}
+
+@media screen and (min-width: 500px) and (max-width: 1200px) {
+  .nav-option__title {
+    display: none;
+  }
+
+  .nav-option {
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .nav-option:hover::before {
+    content: attr(data-tooltip);
+    background-color: var(--dark-gray);
+    color: var(--white);
+    padding: 0 1rem;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    z-index: 9;
+    font-size: initial;
+    font-weight: 700;
+    border: 2px solid var(--global-color);
+    border-radius: 3px;
+  }
+}
