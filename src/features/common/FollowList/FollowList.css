@@ -28,6 +28,7 @@
   border: 1px solid;
   border-radius: 2px;
   margin: 5px;
+  color: var(--dark-gray);
 }
 
 .follower__badge,

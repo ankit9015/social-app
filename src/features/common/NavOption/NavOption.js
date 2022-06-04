@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import useWindowSize from "../../hooks/useWindowSize";
+import useWindowSize from "../../../hooks/useWindowSize";
 import "./NavOption.css";
 
 function NavOption({ Icon, title, link }) {
@@ -8,7 +8,7 @@ function NavOption({ Icon, title, link }) {
   const navStyle = ({ isActive }) => {
     return {
       textDecoration: "none",
-      color: isActive ? "var(--primary-color)" : "initial",
+      color: isActive ? "var(--primary-color)" : "inherit",
     };
   };
   return (

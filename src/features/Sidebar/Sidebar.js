@@ -10,10 +10,11 @@ import {
   SearchIcon,
   AddIcon,
 } from "../../icon";
-import NavOption from "../NavOption/NavOption";
+
 import AvatarInfo from "../common/AvatarInfo/AvatarInfo";
 import "./Sidebar.css";
-import UserOption from "../UserOption/UserOption";
+import NavOption from "../common/NavOption/NavOption";
+import UserOption from "../common/UserOption/UserOption";
 
 function Sidebar({ sidebarToggle, setSidebarToggle }) {
   const { width } = useWindowSize();

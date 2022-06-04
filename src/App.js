@@ -5,13 +5,13 @@ import Header from "./features/Header/Header";
 import Sidebar from "./features/Sidebar/Sidebar";
 import Widgets from "./features/Widgets/Widgets";
 import Router from "./Router/Router";
-
-// import Router from "./Router/outer";
+import { useSelector } from "react-redux";
 
 function App() {
   const [sidebarToggle, setSidebarToggle] = useState(false);
+  const { isDarkTheme } = useSelector((state) => state.theme);
   return (
-    <div className="app">
+    <div data-theme={isDarkTheme ? "dark" : "light"} className="app">
       <Header setSidebarToggle={setSidebarToggle} />
       <div className="app-body flex-row">
         <Sidebar

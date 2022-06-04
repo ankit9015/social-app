@@ -8,6 +8,15 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import MenuIcon from "@mui/icons-material/Menu";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import AddIcon from "@mui/icons-material/Add";
+import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
+import GifBoxOutlinedIcon from "@mui/icons-material/GifBoxOutlined";
+import EmojiEmotionsOutlinedIcon from "@mui/icons-material/EmojiEmotionsOutlined";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
+import ShareIcon from "@mui/icons-material/Share";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 
 export {
   HomeOutlinedIcon,
@@ -20,4 +29,13 @@ export {
   MenuIcon,
   ArrowBackIcon,
   AddIcon,
+  ImageOutlinedIcon,
+  GifBoxOutlinedIcon,
+  EmojiEmotionsOutlinedIcon,
+  FavoriteBorderIcon,
+  FavoriteIcon,
+  ChatBubbleOutlineOutlinedIcon,
+  ShareIcon,
+  DarkModeIcon,
+  LightModeOutlinedIcon,
 };

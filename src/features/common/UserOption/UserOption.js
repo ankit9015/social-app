@@ -1,8 +1,9 @@
 import React, { useRef, useState } from "react";
 import "./UserOption.css";
-import { MoreHorizIcon } from "../../icon";
-import AvatarInfo from "../common/AvatarInfo/AvatarInfo";
-import Modal from "../common/Modal/Modal";
+import { MoreHorizIcon } from "../../../icon";
+import AvatarInfo from "../AvatarInfo/AvatarInfo";
+import Modal from "../Modal/Modal";
+import { useSelector } from "react-redux";
 
 function UserOption() {
   const [showModal, setShowModal] = useState(false);
@@ -18,6 +19,7 @@ function UserOption() {
     }
   };
 
+  const { isDarkTheme } = useSelector((state) => state.theme);
   return (
     <div
       ref={userOptionRef}
@@ -31,10 +33,14 @@ function UserOption() {
       <MoreHorizIcon className="icon" fontSize="large" />
       {showModal && (
         <Modal
-          coords={coords}
+          coords={{ left: coords.left + "px", top: coords.top + "px" }}
           updateCoords={() => updateCoords(userOptionRef.current)}
+          position="top-right"
         >
-          <div className="user-option__modal flex-column">
+          <div
+            data-theme={isDarkTheme ? "dark" : "light"}
+            className="user-option__modal flex-column"
+          >
             <div className="modal__header">
               <AvatarInfo variant="horizontal" />
             </div>

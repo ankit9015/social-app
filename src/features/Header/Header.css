@@ -12,6 +12,9 @@
   height: 100%;
   width: clamp(20rem, 95%, 120rem);
   margin: auto;
+  gap: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .header__search {
@@ -20,6 +23,13 @@
   position: absolute;
   left: 50%;
   display: none;
+}
+
+.header__theme-button {
+  margin-left: auto;
+  border: none;
+  background: none;
+  color: var(--global-color);
 }
 
 @media screen and (min-width: 500px) and (max-width: 1000px) {
