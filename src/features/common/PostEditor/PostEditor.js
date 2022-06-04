@@ -12,7 +12,7 @@ function PostEditor() {
     <div className="post-editor">
       <Avatar className="post-editor__avatar" />
       <form className="post-editor__form">
-        <input className="post-editor__text-input" type="text"></input>
+        <textarea className="post-editor__text-input" type="text"></textarea>
         <div className="post-editor__icon-buttons">
           <ImageOutlinedIcon fontSize="large" />
           <GifBoxOutlinedIcon fontSize="large" />

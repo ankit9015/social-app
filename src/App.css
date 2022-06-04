@@ -46,8 +46,10 @@ html {
   flex-grow: 1;
 }
 
-input {
+input,
+textarea {
   background-color: var(--global-backdrop);
+  color: var(--global-color);
 }
 
 @media screen and (min-width: 500px) {
