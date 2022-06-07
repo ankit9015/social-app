@@ -7,3 +7,29 @@
   transform: scale(1.05);
   box-shadow: 1px 1px 9px -1px var(--primary-color);
 }
+
+.button-primary {
+  color: var(--white);
+}
+
+input,
+textarea {
+  background-color: var(--global-backdrop);
+  color: var(--global-color);
+}
+
+input:focus::placeholder {
+  color: var(--global-color);
+}
+
+.text-sm {
+  font-size: 1rem;
+}
+
+.text-blue {
+  color: var(--blue);
+}
+
+.pointer {
+  cursor: pointer;
+}

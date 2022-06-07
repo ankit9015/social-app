@@ -6,11 +6,14 @@ html {
   --black: rgb(5, 5, 5);
   --dark-gray: rgb(76, 75, 75);
   --translucent-gray: rgba(153, 150, 150, 0.574);
+  --blue: rgb(23, 128, 240);
+  --input-border: var(--global-color);
 }
 
 [data-theme="dark"] {
   --global-backdrop: rgb(8, 8, 8);
   --global-color: var(--white);
+  --error__bg-color: rgb(245, 119, 119);
 }
 
 [data-theme="light"] {
@@ -18,13 +21,10 @@ html {
   --global-color: var(--black);
 }
 
-.text-sm {
-  font-size: 1rem;
-}
-
 .app {
-  width: 100%;
-  height: 100vh;
+  max-width: 100vw;
+  height: 100%;
+  min-height: 100vh;
   background-color: var(--global-backdrop);
   color: var(--global-color);
 }
@@ -32,6 +32,7 @@ html {
 .app-body {
   width: clamp(20rem, 95%, 120rem);
   height: calc(100% - 6rem);
+  min-height: calc(100vh - 6rem);
   justify-content: stretch;
   margin: auto;
   gap: 1rem;
@@ -44,12 +45,8 @@ html {
 
 .app-main {
   flex-grow: 1;
-}
-
-input,
-textarea {
-  background-color: var(--global-backdrop);
-  color: var(--global-color);
+  max-width: 100%;
+  margin-bottom: 5rem;
 }
 
 @media screen and (min-width: 500px) {
@@ -61,8 +58,11 @@ textarea {
     max-width: 700px;
   }
 
-  .app-main {
+  .app-body__widgets {
     border-left: 2px solid var(--gray);
+  }
+
+  .app-body .sidebar {
     border-right: 2px solid var(--gray);
   }
 }

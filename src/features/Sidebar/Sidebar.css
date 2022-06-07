@@ -67,6 +67,7 @@
     transition: none;
     gap: 1.5rem;
     border-right: none;
+    min-height: calc(100vh - 6rem);
   }
 
   .sidebar * {

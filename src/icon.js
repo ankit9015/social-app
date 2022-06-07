@@ -17,6 +17,8 @@ import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutline
 import ShareIcon from "@mui/icons-material/Share";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 export {
   HomeOutlinedIcon,
@@ -38,4 +40,6 @@ export {
   ShareIcon,
   DarkModeIcon,
   LightModeOutlinedIcon,
+  VisibilityIcon,
+  VisibilityOffIcon,
 };

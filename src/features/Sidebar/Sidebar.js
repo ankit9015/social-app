@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useWindowSize from "../../hooks/useWindowSize";
 import {
   HomeOutlinedIcon,
@@ -15,11 +15,14 @@ import AvatarInfo from "../common/AvatarInfo/AvatarInfo";
 import "./Sidebar.css";
 import NavOption from "../common/NavOption/NavOption";
 import UserOption from "../common/UserOption/UserOption";
+import { useSelector } from "react-redux";
+import { Modal, PostEditor } from "../common";
 
 function Sidebar({ sidebarToggle, setSidebarToggle }) {
   const { width } = useWindowSize();
+  const { user } = useSelector((state) => state.auth);
   let isSmallScreen = (() => width < 500)();
-
+  const [showModal, setShowModal] = useState(false);
   return (
     <aside
       className={`sidebar flex-column ${sidebarToggle ? "" : "sidebar--hide"}`}
@@ -34,7 +37,7 @@ function Sidebar({ sidebarToggle, setSidebarToggle }) {
             <ArrowBackIcon fontSize="large" />
           </div>
           <div className="sidebar__user-info--small-screen">
-            <AvatarInfo variant="vertical" />
+            <AvatarInfo variant="vertical" user={user} />
           </div>
         </>
       )}
@@ -58,9 +61,17 @@ function Sidebar({ sidebarToggle, setSidebarToggle }) {
         <div className="sidebar__logout-option text-md">Logout</div>
       )}
       {!isSmallScreen && (
-        <button className="sidebar__create-button button button-primary">
+        <button
+          className="sidebar__create-button button button-primary"
+          onClick={() => setShowModal((prev) => !prev)}
+        >
           <AddIcon className="icon" fontSize="large" />
           <span className="text-md">Create Post</span>
+          {showModal && (
+            <Modal>
+              <PostEditor />
+            </Modal>
+          )}
         </button>
       )}
       {!isSmallScreen && <UserOption />}
