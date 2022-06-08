@@ -20,9 +20,12 @@ export const getAllUsersHandler = function () {
  * */
 
 export const getUserHandler = function (schema, request) {
-  const userId = request.params.userId;
+  // userId is taking username in getUser() api call but
+  // since request params is taking the value as userId here
+  //we are changing names from userId to username
+  const { userId: username } = request.params;
   try {
-    const user = schema.users.findBy({ _id: userId }).attrs;
+    const user = schema.users.findBy({ username: username }).attrs;
     return new Response(200, {}, { user });
   } catch (error) {
     return new Response(

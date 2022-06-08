@@ -111,13 +111,14 @@ function PostBox({ post }) {
         <div className="post-box__footer flex-row">
           <span
             className="pointer"
-            onClick={() =>
+            onClick={() => {
+              console.log(post);
               dispatch(
                 hasLiked
                   ? dislikePost({ postId: post._id, authToken })
                   : likePost({ postId: post._id, authToken })
-              ).unwrap()
-            }
+              ).unwrap();
+            }}
           >
             {hasLiked ? (
               <FavoriteIcon fontSize="large" style={{ color: "red" }} />

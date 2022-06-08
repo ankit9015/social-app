@@ -41,24 +41,51 @@ function Sidebar({ sidebarToggle, setSidebarToggle }) {
           </div>
         </>
       )}
-      <NavOption link="/" Icon={HomeOutlinedIcon} title="Home" />
-      <NavOption link="explore" Icon={RocketOutlinedIcon} title="Explore" />
-      {isSmallScreen && (
-        <NavOption link="search" Icon={SearchIcon} title="Search" />
-      )}
-      <NavOption link="bookmarks" Icon={BookmarkBorderIcon} title="Bookmarks" />
       <NavOption
+        onClick={() => setSidebarToggle(false)}
+        link="/"
+        Icon={HomeOutlinedIcon}
+        title="Home"
+      />
+      <NavOption
+        onClick={() => setSidebarToggle(false)}
+        link="explore"
+        Icon={RocketOutlinedIcon}
+        title="Explore"
+      />
+      {isSmallScreen && (
+        <NavOption
+          onClick={() => setSidebarToggle(false)}
+          link="search"
+          Icon={SearchIcon}
+          title="Search"
+        />
+      )}
+      <NavOption
+        onClick={() => setSidebarToggle(false)}
+        link="bookmarks"
+        Icon={BookmarkBorderIcon}
+        title="Bookmarks"
+      />
+      <NavOption
+        onClick={() => setSidebarToggle(false)}
         link="notifications"
         Icon={NotificationsNoneIcon}
         title="Notifications"
       />
       <NavOption
-        link="profile"
+        onClick={() => setSidebarToggle(false)}
+        link={`${user.username}`}
         Icon={AccountCircleOutlinedIcon}
         title="Profile"
       />
       {isSmallScreen && (
-        <div className="sidebar__logout-option text-md">Logout</div>
+        <div
+          className="sidebar__logout-option text-md"
+          onClick={() => setSidebarToggle(false)}
+        >
+          Logout
+        </div>
       )}
       {!isSmallScreen && (
         <button

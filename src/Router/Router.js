@@ -1,7 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 
 import React from "react";
-import { Bookmarks, Explore, HomePage, Login, Signup } from "../features";
+import {
+  Bookmarks,
+  Explore,
+  HomePage,
+  Login,
+  ProfilePage,
+  Signup,
+} from "../features";
 import PrivateRoute from "./PrivateRoute";
 
 function Router() {
@@ -29,6 +36,14 @@ function Router() {
         element={
           <PrivateRoute>
             <Bookmarks />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path=":username"
+        element={
+          <PrivateRoute>
+            <ProfilePage />
           </PrivateRoute>
         }
       />

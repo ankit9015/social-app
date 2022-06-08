@@ -1,5 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
 import {
   bookmarkPost,
   deletePost,
@@ -10,14 +9,7 @@ import {
 } from "../common/PostBox/PostBoxSlice";
 import { createPost } from "../common/PostEditor/PostEditorSlice";
 import { getPosts } from "../HomePage/HomePageSlice";
-
-export const getUserPost = createAsyncThunk(
-  "posts/userPosts",
-  async (username) => {
-    const { data } = await axios.get(`/api/posts/user/${username}`);
-    return data;
-  }
-);
+import { getUserPost } from "../ProfilePage/ProfilePageSlice";
 
 const postsSlice = createSlice({
   name: "posts",
@@ -43,8 +35,9 @@ const postsSlice = createSlice({
       console.log("error");
     });
     builder.addCase(getUserPost.fulfilled, (state, action) => {
+      const { storePosts } = action.payload;
       state.loading = false;
-      state.posts = action.payload;
+      state.posts = storePosts;
     });
     builder.addCase(createPost.pending, (state) => {
       state.loading = true;

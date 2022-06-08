@@ -1,0 +1,32 @@
+.profile__info {
+  align-items: center;
+  width: 100%;
+  padding: 2rem 1rem;
+}
+
+.profile__avatar {
+  margin: 1rem;
+}
+
+.profile__name,
+.profile__username {
+  line-height: normal;
+}
+
+.profile__edit--button {
+  padding: 0 1rem;
+  margin: 1rem 0;
+}
+
+.profile__account-info {
+  height: 8rem;
+  width: 30rem;
+  margin: 2rem;
+  border: 2px solid var(--gray);
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.profile__posts {
+  gap: 1rem;
+}
