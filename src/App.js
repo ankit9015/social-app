@@ -25,7 +25,7 @@ function App() {
             setSidebarToggle={setSidebarToggle}
           />
         )}
-        <div className="app-main">
+        <div className="app-main invisible-scroll">
           <Router />
         </div>
         {!forbiddenLocation && (

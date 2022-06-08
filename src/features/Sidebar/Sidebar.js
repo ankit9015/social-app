@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import useWindowSize from "../../hooks/useWindowSize";
 import {
   HomeOutlinedIcon,
   RocketOutlinedIcon,
@@ -17,6 +16,7 @@ import NavOption from "../common/NavOption/NavOption";
 import UserOption from "../common/UserOption/UserOption";
 import { useSelector } from "react-redux";
 import { Modal, PostEditor } from "../common";
+import { useWindowSize } from "../../helperFunction";
 
 function Sidebar({ sidebarToggle, setSidebarToggle }) {
   const { width } = useWindowSize();
@@ -69,7 +69,7 @@ function Sidebar({ sidebarToggle, setSidebarToggle }) {
           <span className="text-md">Create Post</span>
           {showModal && (
             <Modal>
-              <PostEditor />
+              <PostEditor closeEditor={() => setShowModal(false)} />
             </Modal>
           )}
         </button>

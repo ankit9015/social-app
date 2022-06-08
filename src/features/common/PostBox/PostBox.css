@@ -5,6 +5,8 @@
   max-width: 60rem;
   gap: 1rem;
   flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .post-box__left {
@@ -27,4 +29,23 @@
 .post-box__footer {
   width: 100%;
   justify-content: space-between;
+}
+
+.post-box__content {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.post-box__options-modal {
+  border-radius: 1rem;
+  background-color: var(--global-backdrop);
+  color: var(--global-color);
+  border: 2px solid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.post-box__options-modal > * {
+  padding: 0 1rem;
+  width: 15rem;
 }

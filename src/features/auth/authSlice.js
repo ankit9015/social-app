@@ -37,7 +37,8 @@ export const authSlice = createSlice({
   },
   reducers: {
     logout: (state) => {
-      state.authToken = "";
+      state.authToken = null;
+      state.user = null;
     },
   },
   extraReducers: (builder) => {
@@ -51,8 +52,9 @@ export const authSlice = createSlice({
     });
 
     builder.addCase(loginUser.fulfilled, (state, action) => {
+      console.log(action);
       state.loading = false;
-      state.token = action.payload.encodedToken;
+      state.authToken = action.payload.encodedToken;
       state.user = action.payload.foundUser;
       localStorage.setItem(
         "authToken",
@@ -65,15 +67,14 @@ export const authSlice = createSlice({
       state.loading = true;
     });
 
-    builder.addCase(signupUser.rejected, (state, action) => {
+    builder.addCase(signupUser.rejected, (state) => {
       state.loading = false;
       console.log("error");
     });
 
     builder.addCase(signupUser.fulfilled, (state, action) => {
-      console.log(action);
       state.loading = false;
-      state.token = action.payload.encodedToken;
+      state.authToken = action.payload.encodedToken;
       state.user = action.payload.createdUser;
       localStorage.setItem(
         "authToken",

@@ -5,22 +5,14 @@ import AvatarInfo from "../AvatarInfo/AvatarInfo";
 import Modal from "../Modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../auth/authSlice";
+import { usePosition } from "../../../helperFunction";
 
 function UserOption() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const [showModal, setShowModal] = useState(false);
-  const [coords, setCoords] = useState({});
+  const { coords, updateCoords } = usePosition();
   const userOptionRef = useRef(null);
-  const updateCoords = (el) => {
-    if (el) {
-      const rect = el.getBoundingClientRect();
-      setCoords({
-        left: rect.x,
-        top: rect.top,
-      });
-    }
-  };
 
   const { isDarkTheme } = useSelector((state) => state.theme);
   return (

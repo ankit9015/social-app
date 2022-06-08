@@ -23,8 +23,7 @@ html {
 
 .app {
   max-width: 100vw;
-  height: 100%;
-  min-height: 100vh;
+  height: 100vh;
   background-color: var(--global-backdrop);
   color: var(--global-color);
 }
@@ -32,7 +31,6 @@ html {
 .app-body {
   width: clamp(20rem, 95%, 120rem);
   height: calc(100% - 6rem);
-  min-height: calc(100vh - 6rem);
   justify-content: stretch;
   margin: auto;
   gap: 1rem;
@@ -46,7 +44,8 @@ html {
 .app-main {
   flex-grow: 1;
   max-width: 100%;
-  margin-bottom: 5rem;
+  padding-bottom: 5rem;
+  overflow-y: scroll;
 }
 
 @media screen and (min-width: 500px) {

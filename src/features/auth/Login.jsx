@@ -13,7 +13,6 @@ function Login() {
   const [formData, setFormData] = useState(
     JSON.parse(localStorage.getItem("savedLogin")) ?? {}
   );
-  // console.log("rerun", formData);
 
   const submitHandler = async (e, loginForm) => {
     e.preventDefault();
