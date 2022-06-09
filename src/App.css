@@ -16,11 +16,6 @@ html {
   --error__bg-color: rgb(245, 119, 119);
 }
 
-[data-theme="light"] {
-  --global-backdrop: rgb(254, 254, 254);
-  --global-color: var(--black);
-}
-
 .app {
   max-width: 100vw;
   height: 100%;
