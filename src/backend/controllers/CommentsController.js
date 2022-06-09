@@ -33,6 +33,7 @@ export const getPostCommentsHandler = function (schema, request) {
  * */
 
 export const addPostCommentHandler = function (schema, request) {
+  // console.log(request);
   const user = requiresAuth.call(this, request);
   try {
     if (!user) {
@@ -128,7 +129,9 @@ export const editPostCommentHandler = function (schema, request) {
  * */
 
 export const deletePostCommentHandler = function (schema, request) {
+  // console.log(request);
   const user = requiresAuth.call(this, request);
+  console.log("work");
   try {
     if (!user) {
       return new Response(
@@ -232,7 +235,10 @@ export const upvotePostCommentHandler = function (schema, request) {
  * */
 
 export const downvotePostCommentHandler = function (schema, request) {
+  console.log("in");
   const user = requiresAuth.call(this, request);
+  console.log(user);
+  console.log("in");
   try {
     if (!user) {
       return new Response(

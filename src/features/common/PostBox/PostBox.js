@@ -6,7 +6,6 @@ import {
   FavoriteBorderIcon,
   FavoriteIcon,
   MoreHorizIcon,
-  ShareIcon,
 } from "../../../icon";
 import "./PostBox.css";
 import Modal from "../Modal/Modal";
@@ -20,21 +19,28 @@ import {
   removeBookmarkPost,
 } from "./PostBoxSlice";
 import PostBoxEditModal from "./PostBoxEditModal";
+import { useLocation, useNavigate } from "react-router-dom";
+import PostEditor from "../PostEditor/PostEditor";
 
 function PostBox({ post }) {
-  const createdAt = new Date(post.createdAt).getTime();
-  const now = new Date().getTime();
+  const createdAt = new Date(post.createdAt);
+  const now = new Date();
   const [showOptionsModal, setShowOptionsModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [commentModal, setcommentModal] = useState(false);
   const { coords, updateCoords } = usePosition();
   const optionsRef = useRef(null);
   const { isDarkTheme } = useSelector((state) => state.theme);
   const { authToken, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-
+  const location = useLocation();
+  const navigate = useNavigate();
   const hasLiked = post?.likes.likedBy?.find(
     (item) => item.username === user.username
   );
+
+  const isLocationPost = location.pathname.includes("post");
+  const isUserPost = post.username === user.username;
 
   return (
     <div className="post-box flex-row">
@@ -45,9 +51,11 @@ function PostBox({ post }) {
         <div className="post-box__header flex-row text-md">
           <h4>Name</h4>
           <h4>@{post.username}</h4>
-          <p className="text-gray">
-            {timeDifference({ oldTime: createdAt, newTime: now })}
-          </p>
+          {!location.pathname.includes("post") && (
+            <p className="text-gray">
+              {timeDifference({ oldTime: createdAt, newTime: now })}
+            </p>
+          )}
 
           <span
             ref={optionsRef}
@@ -70,10 +78,14 @@ function PostBox({ post }) {
                   data-theme={isDarkTheme ? "dark" : "light"}
                   className="post-box__options-modal flex-column"
                 >
-                  <p className="text-md pointer">Mock</p>
-                  {post.username === user.username && (
+                  {!isUserPost && (
+                    <button className="text-md pointer">
+                      Unfollow @{post.username}
+                    </button>
+                  )}
+                  {isUserPost && (
                     <>
-                      <div
+                      <button
                         onClick={() => setShowEditModal((prev) => !prev)}
                         className="text-md pointer"
                       >
@@ -87,8 +99,8 @@ function PostBox({ post }) {
                             }}
                           />
                         )}
-                      </div>
-                      <div
+                      </button>
+                      <button
                         className="text-md pointer"
                         onClick={() => {
                           dispatch(
@@ -97,7 +109,7 @@ function PostBox({ post }) {
                         }}
                       >
                         Delete
-                      </div>
+                      </button>
                     </>
                   )}
                 </div>
@@ -105,9 +117,25 @@ function PostBox({ post }) {
             )}
           </span>
         </div>
-        <div className="post-box__content text-md">
+        <div
+          onClick={() => {
+            if (!isLocationPost) {
+              navigate(`post/${post._id}`);
+            }
+          }}
+          className="post-box__content text-md"
+        >
           <p>{post.content}</p>
         </div>
+        {isLocationPost && (
+          <p className="text-gray post__time">
+            {`
+             ${createdAt.toLocaleString("default", {
+               timeStyle: "short",
+               dateStyle: "long",
+             })}`}
+          </p>
+        )}
         <div className="post-box__footer flex-row">
           <span
             className="pointer"
@@ -126,13 +154,23 @@ function PostBox({ post }) {
             )}
             <span className="text-md">{post.likes?.likeCount}</span>
           </span>
-          <span className="pointer">
-            <ChatBubbleOutlineOutlinedIcon fontSize="large" />
-            <span className="text-md">{post.comments?.length}</span>
-          </span>
-          <span className="pointer">
-            <ShareIcon fontSize="large" />
-          </span>
+          {!isLocationPost && (
+            <span
+              className="pointer"
+              onClick={() => setcommentModal((prev) => !prev)}
+            >
+              <ChatBubbleOutlineOutlinedIcon fontSize="large" />
+              <span className="text-md">{post.comments?.length}</span>
+              {commentModal && (
+                <Modal>
+                  <PostEditor
+                    commentOn={post}
+                    exitModal={() => setcommentModal(false)}
+                  />
+                </Modal>
+              )}
+            </span>
+          )}
           <span
             onClick={() =>
               dispatch(

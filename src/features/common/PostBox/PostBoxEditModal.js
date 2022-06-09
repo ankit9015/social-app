@@ -6,7 +6,7 @@ function PostBoxEditModal({ post, exitModal }) {
   return (
     <Modal>
       <div className="post-box__edit-modal">
-        <PostEditor post={post} closeEditor={exitModal} />
+        <PostEditor currPost={post} closeEditor={exitModal} />
       </div>
     </Modal>
   );

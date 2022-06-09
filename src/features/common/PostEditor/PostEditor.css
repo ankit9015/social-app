@@ -36,4 +36,5 @@
 .post-editor__post-button {
   color: var(--global-color);
   padding: 0 1rem;
+  margin-left: auto;
 }

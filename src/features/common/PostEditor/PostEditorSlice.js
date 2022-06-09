@@ -3,11 +3,11 @@ import axios from "axios";
 
 export const createPost = createAsyncThunk(
   "posts/create",
-  async ({ authToken, post }) => {
+  async ({ authToken, postData }) => {
     const { data } = await axios.post(
       "/api/posts",
       {
-        postData: post,
+        postData: postData,
       },
       {
         headers: {
