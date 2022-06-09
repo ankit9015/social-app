@@ -16,12 +16,12 @@ export const loginUser = createAsyncThunk(
 );
 export const signupUser = createAsyncThunk(
   "auth/signup",
-  async ({ username, password, firstname, lastname, email }) => {
+  async ({ username, password, firstName, lastName, email }) => {
     const { data } = await axios.post("/api/auth/signup", {
       username,
       password,
-      firstname,
-      lastname,
+      firstName,
+      lastName,
       email,
     });
     return data;
@@ -38,6 +38,9 @@ export const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.authToken = "";
+      state.user = "";
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("user");
     },
   },
   extraReducers: (builder) => {
@@ -71,7 +74,6 @@ export const authSlice = createSlice({
     });
 
     builder.addCase(signupUser.fulfilled, (state, action) => {
-      console.log(action);
       state.loading = false;
       state.token = action.payload.encodedToken;
       state.user = action.payload.createdUser;

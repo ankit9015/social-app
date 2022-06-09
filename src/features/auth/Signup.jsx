@@ -34,9 +34,8 @@ function Signup() {
 
   const signupHandler = async (signupForm) => {
     try {
-      const response = await dispatch(signupUser(signupForm)).unwrap();
-      console.log(response);
-      navigate(location?.state.from ?? "/");
+      dispatch(signupUser(signupForm)).unwrap();
+      location.state ? navigate(location.state.from) : navigate("/");
     } catch (err) {
       console.log(err);
     }
