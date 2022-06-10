@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import useWindowSize from "../../../helperFunctions/useWindowSize";
+import { useWindowSize } from "../../../helperFunction";
 
 import "./NavOption.css";
 

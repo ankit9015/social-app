@@ -30,6 +30,23 @@ input:focus::placeholder {
   color: var(--blue);
 }
 
+.text-gray {
+  color: var(--gray);
+}
+
 .pointer {
   cursor: pointer;
+}
+
+.invisible-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.invisible-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+button:disabled {
+  opacity: 0.5;
 }

@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import React from "react";
-import { Bookmarks, Explore, HomePage, Login, Signup } from "../features";
+import { Bookmarks, Explore, HomePage, Login, Post, Signup } from "../features";
 import PrivateRoute from "./PrivateRoute";
 
 function Router() {
@@ -32,6 +32,7 @@ function Router() {
           </PrivateRoute>
         }
       />
+      <Route path="post/:postId" element={<Post />} />
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<Signup />} />
       <Route

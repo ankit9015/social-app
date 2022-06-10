@@ -8,6 +8,7 @@ import EmailInput from "./Input/EmailInput";
 import PasswordInput from "./Input/PasswordInput";
 import TextInput from "./Input/TextInput";
 import CheckboxInput from "./Input/CheckboxInput";
+import Comment from "./Comment/Comment";
 
 export {
   SearchBox,
@@ -20,4 +21,5 @@ export {
   PasswordInput,
   TextInput,
   CheckboxInput,
+  Comment,
 };
