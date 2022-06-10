@@ -1,34 +1,54 @@
 import { Avatar } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  EmojiEmotionsOutlinedIcon,
-  GifBoxOutlinedIcon,
-  ImageOutlinedIcon,
-} from "../../../icon";
+import { addComment, editComment } from "../Comment/CommentSlice";
 import { editPost } from "../PostBox/PostBoxSlice";
 import "./PostEditor.css";
 import { createPost } from "./PostEditorSlice";
 
-function PostEditor({ post, closeEditor }) {
+function PostEditor({ currPost, closeEditor, commentOn }) {
   const dispatch = useDispatch();
   const { authToken } = useSelector((state) => state.auth);
   const [formData, setFormData] = useState(
-    post?.content ? { content: post.content } : {}
+    currPost?.content ? { content: currPost.content } : {}
   );
 
   const submitHandler = (e) => {
     e.preventDefault();
 
     if (formData.content !== "") {
-      (async () => {
-        await dispatch(
-          post
-            ? editPost({ postId: post._id, postData: formData, authToken })
-            : createPost({ post: formData, authToken })
-        ).unwrap();
-        closeEditor ? closeEditor() : setFormData({});
-      })();
+      if (commentOn) {
+        (async () => {
+          await dispatch(
+            currPost
+              ? editComment({
+                  postId: commentOn._id,
+                  commentId: currPost._id,
+                  commentData: formData,
+                  authToken,
+                })
+              : addComment({
+                  postId: commentOn._id,
+                  commentData: formData,
+                  authToken,
+                })
+          ).unwrap();
+          closeEditor ? closeEditor() : setFormData({});
+        })();
+      } else {
+        (async () => {
+          await dispatch(
+            currPost
+              ? editPost({
+                  postId: currPost._id,
+                  postData: formData,
+                  authToken,
+                })
+              : createPost({ postData: formData, authToken })
+          ).unwrap();
+          closeEditor ? closeEditor() : setFormData({});
+        })();
+      }
     }
   };
   return (
@@ -43,18 +63,12 @@ function PostEditor({ post, closeEditor }) {
             setFormData({ ...formData, content: e.target.value })
           }
         ></textarea>
-        <div className="post-editor__icon-buttons">
-          <ImageOutlinedIcon className="pointer" fontSize="large" />
-          <GifBoxOutlinedIcon className="pointer" fontSize="large" />
-          <EmojiEmotionsOutlinedIcon className="pointer" fontSize="large" />
-        </div>
-
         <button
           type="submit"
           className="post-editor__post-button button-primary button text-md"
           onClick={(e) => submitHandler(e)}
         >
-          {post ? "Save" : "Post"}
+          {currPost ? "Save" : "Post"}
         </button>
       </form>
     </div>

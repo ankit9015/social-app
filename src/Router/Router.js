@@ -1,13 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-
 import React from "react";
 import {
   Bookmarks,
   Explore,
   HomePage,
   Login,
-  ProfilePage,
+  Post,
   Signup,
+  ProfilePage,
 } from "../features";
 import PrivateRoute from "./PrivateRoute";
 
@@ -44,6 +44,14 @@ function Router() {
         element={
           <PrivateRoute>
             <ProfilePage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/:username/:postId"
+        element={
+          <PrivateRoute>
+            <Post />
           </PrivateRoute>
         }
       />

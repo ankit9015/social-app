@@ -1,6 +1,6 @@
 html {
   font-size: 50%;
-  --gray: rgb(144, 139, 139);
+  --gray: rgb(156, 152, 152);
   --primary-color: rgb(25, 108, 251);
   --white: rgb(241, 238, 238);
   --black: rgb(5, 5, 5);
@@ -14,11 +14,6 @@ html {
   --global-backdrop: rgb(8, 8, 8);
   --global-color: var(--white);
   --error__bg-color: rgb(245, 119, 119);
-}
-
-[data-theme="light"] {
-  --global-backdrop: rgb(254, 254, 254);
-  --global-color: var(--black);
 }
 
 .app {

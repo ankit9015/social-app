@@ -4,12 +4,12 @@ import axios from "axios";
 export const deletePost = createAsyncThunk(
   "posts/delete",
   async ({ postId, authToken }) => {
-    const response = await axios.delete(`api/posts/${postId}`, {
+    const { data } = await axios.delete(`api/posts/${postId}`, {
       headers: {
         authorization: authToken,
       },
     });
-    return response.data;
+    return { ...data, deletedPost: postId };
   }
 );
 

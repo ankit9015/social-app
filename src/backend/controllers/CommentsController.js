@@ -53,6 +53,8 @@ export const addPostCommentHandler = function (schema, request) {
       _id: uuid(),
       ...commentData,
       username: user.username,
+      firstName: user.firstName,
+      lastName: user.lastName,
       votes: { upvotedBy: [], downvotedBy: [] },
       createdAt: formatDate(),
       updatedAt: formatDate(),
@@ -191,7 +193,6 @@ export const upvotePostCommentHandler = function (schema, request) {
         }
       );
     }
-
     const { postId, commentId } = request.params;
     const post = schema.posts.findBy({ _id: postId }).attrs;
     const commentIndex = post.comments.findIndex(

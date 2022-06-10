@@ -19,6 +19,10 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
+import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 
 export {
   HomeOutlinedIcon,
@@ -42,4 +46,8 @@ export {
   LightModeOutlinedIcon,
   VisibilityIcon,
   VisibilityOffIcon,
+  ThumbDownIcon,
+  ThumbDownOutlinedIcon,
+  ThumbUpIcon,
+  ThumbUpOutlinedIcon,
 };

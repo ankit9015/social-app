@@ -4,5 +4,5 @@ import Bookmarks from "./Bookmarks/Bookmarks";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
 import ProfilePage from "./ProfilePage/ProfilePage";
-
-export { HomePage, Explore, Bookmarks, Login, Signup, ProfilePage };
+import Post from "./Post/Post";
+export { HomePage, Explore, Bookmarks, Post, Login, Signup, ProfilePage };

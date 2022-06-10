@@ -1,0 +1,26 @@
+.post {
+  gap: 1rem;
+}
+.post__header {
+  align-items: center;
+  height: 4rem;
+}
+
+.post__main-post {
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.post__main-post__header {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment__editor {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.post__comments {
+  gap: 1rem;
+}
