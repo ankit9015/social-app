@@ -20,7 +20,7 @@ function PostEditor() {
         </div>
         <button
           type="submit"
-          className="post-editor__post-button button-primary button text-md"
+          className="post-editor__post-button button-primary button"
         >
           Post
         </button>

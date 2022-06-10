@@ -1,0 +1,38 @@
+.follow-list {
+  width: 100%;
+  border: 2px solid;
+}
+
+.follow-list__header {
+  border-bottom: 1px solid;
+  padding: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.follow-list__header :last-child {
+  color: var(--primary-color);
+}
+
+.follow-list__account {
+  padding: 1rem 0.5rem;
+  width: 100%;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 5px;
+}
+
+.follower__badge {
+  align-self: end;
+  border: 1px solid;
+  border-radius: 2px;
+  margin: 5px;
+  color: var(--dark-gray);
+}
+
+.follower__badge,
+.follow-button {
+  padding-left: 2px;
+  padding-right: 2px;
+}

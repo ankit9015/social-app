@@ -3,7 +3,7 @@ import React from "react";
 import "./AvatarInfo.css";
 
 function AvatarInfo(props) {
-  const { variant, user } = props;
+  const { variant } = props;
   return (
     <div
       className={`avatar-info ${
@@ -16,8 +16,8 @@ function AvatarInfo(props) {
         fontSize="large"
       />
       <div className="avatar-info__content">
-        <p className="text-md">{user?.firstName + " " + user?.lastName}</p>
-        <p className="text-md">@{user?.username}</p>
+        <p className="text-md">Ankit Joshi</p>
+        <p className="text-md">@username</p>
       </div>
     </div>
   );
