@@ -1,7 +1,7 @@
 import React from "react";
 
 function Explore() {
-  return <div className="text-lg">Explore</div>;
+  return <div>Explore</div>;
 }
 
 export default Explore;

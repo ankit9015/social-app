@@ -54,7 +54,6 @@ export const deleteComment = createAsyncThunk(
         },
       }
     );
-    console.log(data);
     return { ...data, postId };
   }
 );

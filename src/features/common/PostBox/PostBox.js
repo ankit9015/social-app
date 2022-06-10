@@ -165,7 +165,7 @@ function PostBox({ post }) {
                 <Modal>
                   <PostEditor
                     commentOn={post}
-                    exitModal={() => setcommentModal(false)}
+                    closeEditor={() => setcommentModal(false)}
                   />
                 </Modal>
               )}

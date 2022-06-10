@@ -8,8 +8,8 @@ import { loginUser } from "./authSlice";
 
 function Login() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const location = useLocation();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(
     JSON.parse(localStorage.getItem("savedLogin")) ?? {}
   );

@@ -19,6 +19,7 @@ function Comment({ comment, post }) {
   const dispatch = useDispatch();
 
   const isUserComment = comment.username === user.username;
+
   return (
     <div className="comment flex-row">
       <div className="comment__left">
@@ -59,7 +60,9 @@ function Comment({ comment, post }) {
                     <>
                       <div
                         disabled={true}
-                        onClick={() => setShowEditModal((prev) => !prev)}
+                        onClick={() => {
+                          setShowEditModal((prev) => !prev);
+                        }}
                         className="text-md pointer"
                       >
                         Edit
@@ -69,7 +72,10 @@ function Comment({ comment, post }) {
                               <PostEditor
                                 currPost={comment}
                                 commentOn={post}
-                                exitModal={() => setShowEditModal(false)}
+                                closeEditor={() => {
+                                  setShowEditModal((prev) => false);
+                                  setShowOptionsModal(false);
+                                }}
                               />
                             </div>
                           </Modal>

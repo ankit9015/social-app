@@ -18,7 +18,6 @@ function PostEditor({ currPost, closeEditor, commentOn }) {
 
     if (formData.content !== "") {
       if (commentOn) {
-        console.log("comment");
         (async () => {
           await dispatch(
             currPost
@@ -37,7 +36,6 @@ function PostEditor({ currPost, closeEditor, commentOn }) {
           closeEditor ? closeEditor() : setFormData({});
         })();
       } else {
-        console.log("post");
         (async () => {
           await dispatch(
             currPost

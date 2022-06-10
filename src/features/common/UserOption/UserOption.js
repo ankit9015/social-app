@@ -6,9 +6,11 @@ import Modal from "../Modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../auth/authSlice";
 import { usePosition } from "../../../helperFunction";
+import { useNavigate } from "react-router-dom";
 
 function UserOption() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
   const [showModal, setShowModal] = useState(false);
   const { coords, updateCoords } = usePosition();
@@ -41,7 +43,12 @@ function UserOption() {
             </div>
             <div className="modal__content text-md">
               <p>Profile</p>
-              <p onClick={() => dispatch(logout())}>
+              <p
+                onClick={() => {
+                  dispatch(logout());
+                  navigate("/");
+                }}
+              >
                 Log out @{user?.username}
               </p>
             </div>

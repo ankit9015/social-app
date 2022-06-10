@@ -58,12 +58,11 @@ const postsSlice = createSlice({
     builder.addCase(getUserPost.rejected, handleReject);
     builder.addCase(getUserPost.fulfilled, (state, action) => {
       state.loading = false;
-      state.userPosts = action.payload;
+      state.userPosts = action.payload.posts;
     });
     builder.addCase(createPost.pending, handlePending);
     builder.addCase(createPost.rejected, handleReject);
     builder.addCase(createPost.fulfilled, (state, action) => {
-      console.log(action);
       state.loading = false;
       state.posts = action.payload.posts;
       state.userPosts = [
@@ -84,7 +83,6 @@ const postsSlice = createSlice({
     builder.addCase(editPost.pending, handlePending);
     builder.addCase(editPost.rejected, handleReject);
     builder.addCase(editPost.fulfilled, (state, action) => {
-      console.log(action);
       state.loading = false;
       state.posts = action.payload.posts;
     });

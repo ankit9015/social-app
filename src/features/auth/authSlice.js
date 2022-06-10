@@ -16,12 +16,12 @@ export const loginUser = createAsyncThunk(
 );
 export const signupUser = createAsyncThunk(
   "auth/signup",
-  async ({ username, password, firstname, lastname, email }) => {
+  async ({ username, password, firstName, lastName, email }) => {
     const { data } = await axios.post("/api/auth/signup", {
       username,
       password,
-      firstname,
-      lastname,
+      firstName,
+      lastName,
       email,
     });
     return data;
@@ -39,6 +39,8 @@ export const authSlice = createSlice({
     logout: (state) => {
       state.authToken = null;
       state.user = null;
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("user");
     },
   },
   extraReducers: (builder) => {

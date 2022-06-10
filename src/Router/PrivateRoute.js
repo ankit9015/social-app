@@ -1,10 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 
 function PrivateRoute({ children }) {
   const location = useLocation();
-  const { authToken } = useSelector((state) => state.auth);
+  const authToken = JSON.parse(localStorage.getItem("authToken"));
 
   return (
     <div>
