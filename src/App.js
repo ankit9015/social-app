@@ -1,41 +1,39 @@
 import "./App.css";
-import logo from "./logo.png";
+import "./utils/utility.css";
+import { useState } from "react";
+import Header from "./features/Header/Header";
+import Sidebar from "./features/Sidebar/Sidebar";
+import Widgets from "./features/Widgets/Widgets";
+import Router from "./Router/Router";
+import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 function App() {
+  const [sidebarToggle, setSidebarToggle] = useState(false);
+  const { isDarkTheme } = useSelector((state) => state.theme);
+  const location = useLocation();
+  const forbiddenPaths = ["/login", "/signup"];
+  const forbiddenLocation = forbiddenPaths.includes(location.pathname);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} alt="mockBee logo" width="180" height="180" />
-        <h1 className="brand-title">
-          Welcome to <span>mockBee!</span>
-        </h1>
-        <p className="brand-description">
-          Get started by editing <code>src/App.js</code>
-        </p>
-        <div className="links">
-          <a
-            href="https://mockbee.netlify.app/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Explore mockBee
-          </a>
-          <a
-            href="https://mockbee.netlify.app/docs/api/introduction"
-            target="_blank"
-            rel="noreferrer"
-          >
-            API Documentation
-          </a>
-          <a
-            href="https://github.com/neogcamp/mockBee"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Contribute
-          </a>
+    <div data-theme={isDarkTheme ? "dark" : "light"} className="app">
+      <Header setSidebarToggle={setSidebarToggle} />
+      <div className="app-body flex-row">
+        {!forbiddenLocation && (
+          <Sidebar
+            sidebarToggle={sidebarToggle}
+            setSidebarToggle={setSidebarToggle}
+          />
+        )}
+        <div className="app-main">
+          <Router />
         </div>
-      </header>
+        {!forbiddenLocation && (
+          <aside className="app-body__widgets">
+            <Widgets />
+          </aside>
+        )}
+      </div>
     </div>
   );
 }

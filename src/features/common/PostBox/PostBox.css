@@ -1,0 +1,30 @@
+.post-box {
+  border: 2px solid;
+  padding: 1rem;
+  width: 100%;
+  max-width: 60rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.post-box__left {
+  align-self: stretch;
+}
+
+.post-box__right {
+  flex: 1;
+  gap: 1rem;
+}
+
+.post-box__header {
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.post-box__header :last-child {
+  margin-left: auto;
+}
+
+.post-box__footer {
+  width: 100%;
+  justify-content: space-between;
+}
