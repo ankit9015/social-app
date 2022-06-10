@@ -19,7 +19,6 @@ function Comment({ comment, post }) {
   const dispatch = useDispatch();
 
   const isUserComment = comment.username === user.username;
-
   return (
     <div className="comment flex-row">
       <div className="comment__left">
@@ -27,7 +26,7 @@ function Comment({ comment, post }) {
       </div>
       <div className="comment__right flex-column">
         <div className="comment__header flex-row text-md">
-          <h4>Name</h4>
+          <h4>{`${comment.firstName ?? ""}  ${comment.lastName ?? ""}`}</h4>
           <h4>@{comment.username}</h4>
 
           <span

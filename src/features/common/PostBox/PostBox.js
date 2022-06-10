@@ -49,7 +49,7 @@ function PostBox({ post }) {
       </div>
       <div className="post-box__right flex-column">
         <div className="post-box__header flex-row text-md">
-          <h4>Name</h4>
+          <h4>{post.firstName + " " + post.lastName}</h4>
           <h4>@{post.username}</h4>
           {!location.pathname.includes("post") && (
             <p className="text-gray">
