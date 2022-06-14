@@ -8,6 +8,7 @@ import {
   Post,
   Signup,
   ProfilePage,
+  ProfileEdit,
 } from "../features";
 import PrivateRoute from "./PrivateRoute";
 
@@ -44,6 +45,14 @@ function Router() {
         element={
           <PrivateRoute>
             <ProfilePage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="profile-edit"
+        element={
+          <PrivateRoute>
+            <ProfileEdit />
           </PrivateRoute>
         }
       />

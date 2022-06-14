@@ -6,6 +6,7 @@ import { makeServer } from "./server";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { ToastProvider } from "./features/common/Toast/ToastProvider";
 
 // Call make Server
 makeServer();
@@ -15,9 +16,11 @@ const root = createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <ToastProvider>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </ToastProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

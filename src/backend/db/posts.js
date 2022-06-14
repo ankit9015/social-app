@@ -8,7 +8,7 @@ import { formatDate } from "../utils/authUtils";
 
 export const posts = [
   {
-    _id: `adarshbalika-${formatDate()}`,
+    _id: uuid(),
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
     likes: {
@@ -16,15 +16,17 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
-    username: "adarshbalika",
-    firstName: "adarsh",
-    lastName: "balika",
+    username: "karanSharma",
+    firstName: "Karan",
+    lastName: "Sharma",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     comments: [
       {
         _id: uuid(),
-        username: "shubhamsoni",
+        username: "shubhamSoni",
+        firstName: "Shubham",
+        lastName: "Shah",
         content: "Interesting",
         votes: {
           upvotedBy: [],
@@ -33,7 +35,9 @@ export const posts = [
       },
       {
         _id: uuid(),
-        username: "sohamshah",
+        username: "sohamShah",
+        firstName: "Soham",
+        lastName: "Shah",
         content: "Wow!",
         votes: {
           upvotedBy: [],
@@ -43,7 +47,7 @@ export const posts = [
     ],
   },
   {
-    _id: `shubhamsoni-${formatDate()}`,
+    _id: uuid(),
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
     likes: {
@@ -51,15 +55,15 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
-    username: "shubhamsoni",
-    firstName: "shubham",
-    lastName: "soni",
+    username: "shubhamSoni",
+    firstName: "Shubham",
+    lastName: "Soni",
     comments: [
       {
         _id: uuid(),
-        username: "shubhamsoni",
-        firstName: "shubham",
-        lastName: "soni",
+        username: "shubhamSoni",
+        firstName: "Shubham",
+        lastName: "Soni",
         content: "Interesting",
         votes: {
           upvotedBy: [],
@@ -68,9 +72,9 @@ export const posts = [
       },
       {
         _id: uuid(),
-        username: "sohamshah",
-        firstName: "soham",
-        lastName: "shah",
+        username: "sohamShah",
+        firstName: "Soham",
+        lastName: "Shah",
         content: "Wow!",
         votes: {
           upvotedBy: [],

@@ -16,7 +16,6 @@ function UserOption() {
   const { coords, updateCoords } = usePosition();
   const userOptionRef = useRef(null);
 
-  const { isDarkTheme } = useSelector((state) => state.theme);
   return (
     <div
       ref={userOptionRef}
@@ -34,15 +33,11 @@ function UserOption() {
           updateCoords={() => updateCoords(userOptionRef.current)}
           position="top-right"
         >
-          <div
-            data-theme={isDarkTheme ? "dark" : "light"}
-            className="user-option__modal flex-column"
-          >
+          <div className="user-option__modal flex-column">
             <div className="modal__header">
               <AvatarInfo variant="horizontal" user={user} />
             </div>
             <div className="modal__content text-md">
-              <p>Profile</p>
               <p
                 onClick={() => {
                   dispatch(logout());

@@ -1,8 +1,8 @@
 html {
   font-size: 50%;
-  --gray: rgb(156, 152, 152);
+  --gray: rgb(136, 136, 136);
   --primary-color: rgb(25, 108, 251);
-  --white: rgb(241, 238, 238);
+  --white: rgb(240, 240, 240);
   --black: rgb(5, 5, 5);
   --dark-gray: rgb(76, 75, 75);
   --translucent-gray: rgba(153, 150, 150, 0.574);
@@ -14,6 +14,11 @@ html {
   --global-backdrop: rgb(8, 8, 8);
   --global-color: var(--white);
   --error__bg-color: rgb(245, 119, 119);
+}
+
+[data-theme="light"] {
+  --global-backdrop: rgb(247, 249, 249);
+  --global-color: var(--black);
 }
 
 .app {
@@ -37,7 +42,7 @@ html {
 }
 
 .app-main {
-  flex-grow: 1;
+  flex: 1 1;
   max-width: 100%;
   padding-bottom: 5rem;
   overflow-y: scroll;
@@ -49,7 +54,7 @@ html {
   }
 
   .app-body {
-    max-width: 700px;
+    max-width: 800px;
   }
 
   .app-body__widgets {
@@ -61,10 +66,11 @@ html {
   }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 900px) {
   .app-body__widgets {
     display: block;
-    width: 33rem;
+    width: 35rem;
+    padding-left: 1rem;
   }
   .app-body {
     max-width: none;

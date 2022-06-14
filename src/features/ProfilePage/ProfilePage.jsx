@@ -4,15 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import "./ProfilePage.css";
 import { getUser, getUserPost } from "./ProfilePageSlice";
 import { useParams } from "react-router-dom";
-import { PostBox } from "../common";
+import { FollowUnfollowButton, Modal, PostBox } from "../common";
+import ProfileEdit from "./ProfileEdit";
 
 function ProfilePage() {
   const dispatch = useDispatch();
   const { posts: storePosts } = useSelector((state) => state.posts);
-
+  const { user } = useSelector((state) => state.auth);
+  const { openedUser: profile } = useSelector((state) => state.users);
   const [posts, setPosts] = useState([]);
-  const [profile, setProfile] = useState();
+  const [showEditModal, setShowEditModal] = useState(false);
   const { username } = useParams();
+
   useEffect(() => {
     (async () => {
       const data = await dispatch(
@@ -24,8 +27,7 @@ function ProfilePage() {
 
   useEffect(() => {
     (async () => {
-      const data = await dispatch(getUser({ username })).unwrap();
-      setProfile(data.user);
+      await dispatch(getUser({ username })).unwrap();
     })();
   }, [dispatch, username]);
 
@@ -35,18 +37,31 @@ function ProfilePage() {
         <Avatar
           className="profile__avatar"
           sx={{ width: "8rem", height: "8rem" }}
+          src={profile?.profileImage}
         />
 
         <h1 className="profile__name">
           {profile?.firstName + " " + profile?.lastName}
         </h1>
         <h1 className="profile__username">{profile?.username}</h1>
-        <button className="profile__edit--button button button-outline-primary text-md">
-          Edit Profile
-        </button>
-        <p className="profile__about text-center">about</p>
-        <p className="text-center">external links</p>
-        <div className="profile__account-info flex-row">
+        {user.username === profile?.username ? (
+          <button
+            onClick={() => setShowEditModal((prev) => !prev)}
+            className="profile__edit--button button button-outline-primary text-md"
+          >
+            Edit Profile
+            {showEditModal && (
+              <Modal>
+                <ProfileEdit onSave={() => setShowEditModal(false)} />
+              </Modal>
+            )}
+          </button>
+        ) : (
+          <FollowUnfollowButton currUser={profile} />
+        )}
+        <p className="profile__bio text-center">{profile?.bio}</p>
+        <p className="text-center">{profile?.website}</p>
+        <div className="profile__stats flex-row">
           <div className="flex-column text-center">
             <span className="font-bold">{profile?.following.length}</span>
             <span>Following</span>

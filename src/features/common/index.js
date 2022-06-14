@@ -9,6 +9,9 @@ import PasswordInput from "./Input/PasswordInput";
 import TextInput from "./Input/TextInput";
 import CheckboxInput from "./Input/CheckboxInput";
 import Comment from "./Comment/Comment";
+import FollowUnfollowButton from "./FollowUnfollowButton/FollowUnfollowButton";
+import Tooltip from "./Tooltip/Tooltip";
+import Toast from "./Toast/Toast";
 
 export {
   SearchBox,
@@ -22,4 +25,7 @@ export {
   TextInput,
   CheckboxInput,
   Comment,
+  FollowUnfollowButton,
+  Tooltip,
+  Toast,
 };

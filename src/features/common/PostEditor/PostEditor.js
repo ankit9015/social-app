@@ -8,7 +8,7 @@ import { createPost } from "./PostEditorSlice";
 
 function PostEditor({ currPost, closeEditor, commentOn }) {
   const dispatch = useDispatch();
-  const { authToken } = useSelector((state) => state.auth);
+  const { user, authToken } = useSelector((state) => state.auth);
   const [formData, setFormData] = useState(
     currPost?.content ? { content: currPost.content } : {}
   );
@@ -53,7 +53,7 @@ function PostEditor({ currPost, closeEditor, commentOn }) {
   };
   return (
     <div className="post-editor">
-      <Avatar className="post-editor__avatar" />
+      <Avatar className="post-editor__avatar" src={user.profileImage} />
       <form className="post-editor__form">
         <textarea
           className="post-editor__text-input"

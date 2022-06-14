@@ -27,7 +27,7 @@ export const editPost = createAsyncThunk(
         },
       }
     );
-    return data;
+    return { ...data, postId, postData };
   }
 );
 

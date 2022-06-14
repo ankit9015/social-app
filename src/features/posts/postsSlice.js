@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   addComment,
   deleteComment,
+  downVoteComment,
   editComment,
+  upVoteComment,
 } from "../common/Comment/CommentSlice";
 import {
   bookmarkPost,
@@ -16,14 +18,6 @@ import { createPost } from "../common/PostEditor/PostEditorSlice";
 import { getPosts } from "../HomePage/HomePageSlice";
 import { getUserPost } from "../ProfilePage/ProfilePageSlice";
 import { getComments, getUniquePost } from "../Post/PostSlice";
-
-// export const getUserPost = createAsyncThunk(
-//   "posts/userPosts",
-//   async (username) => {
-//     const { data } = await axios.get(`/api/posts/user/${username}`);
-//     return data;
-//   }
-// );
 
 const handleReject = (state) => {
   state.loading = false;
@@ -40,6 +34,7 @@ const postsSlice = createSlice({
     loading: false,
     posts: [],
     userPosts: [],
+    bookmarks: [],
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -86,6 +81,11 @@ const postsSlice = createSlice({
     builder.addCase(editPost.fulfilled, (state, action) => {
       state.loading = false;
       state.posts = action.payload.posts;
+      state.userPosts = state.userPosts.map((post) =>
+        post._id === action.payload.postId
+          ? { ...post, content: action.payload.postData }
+          : post
+      );
     });
     builder.addCase(likePost.pending, handlePending);
     builder.addCase(likePost.rejected, handleReject);
@@ -104,14 +104,14 @@ const postsSlice = createSlice({
     builder.addCase(bookmarkPost.fulfilled, (state, action) => {
       console.log(action);
       state.loading = false;
-      state.posts = action.payload.posts;
+      state.bookmarks = action.payload.bookmarks;
     });
     builder.addCase(removeBookmarkPost.pending, handlePending);
     builder.addCase(removeBookmarkPost.rejected, handleReject);
     builder.addCase(removeBookmarkPost.fulfilled, (state, action) => {
       console.log(action);
       state.loading = false;
-      state.posts = action.payload.posts;
+      state.bookmarks = action.payload.bookmarks;
     });
     builder.addCase(getComments.pending, handlePending);
     builder.addCase(getComments.rejected, handleReject);
@@ -140,6 +140,24 @@ const postsSlice = createSlice({
     builder.addCase(deleteComment.rejected, handleReject);
     builder.addCase(deleteComment.fulfilled, (state, action) => {
       console.log(action);
+      const { postId, comments } = action.payload;
+      state.loading = false;
+      state.posts = state.posts.map((post) =>
+        post._id === postId ? { ...post, comments: comments } : post
+      );
+    });
+    builder.addCase(upVoteComment.pending, handlePending);
+    builder.addCase(upVoteComment.rejected, handleReject);
+    builder.addCase(upVoteComment.fulfilled, (state, action) => {
+      const { postId, comments } = action.payload;
+      state.loading = false;
+      state.posts = state.posts.map((post) =>
+        post._id === postId ? { ...post, comments: comments } : post
+      );
+    });
+    builder.addCase(downVoteComment.pending, handlePending);
+    builder.addCase(downVoteComment.rejected, handleReject);
+    builder.addCase(downVoteComment.fulfilled, (state, action) => {
       const { postId, comments } = action.payload;
       state.loading = false;
       state.posts = state.posts.map((post) =>

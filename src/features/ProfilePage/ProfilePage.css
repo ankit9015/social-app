@@ -13,12 +13,19 @@
   line-height: normal;
 }
 
-.profile__edit--button {
-  padding: 0 1rem;
-  margin: 1rem 0;
+.profile__username {
+  margin-bottom: 1rem;
 }
 
-.profile__account-info {
+.profile__edit--button {
+  padding: 0 1rem;
+}
+
+.profile__bio {
+  margin-top: 1rem;
+}
+
+.profile__stats {
   height: 8rem;
   width: 30rem;
   margin: 2rem;
@@ -29,4 +36,49 @@
 
 .profile__posts {
   gap: 1rem;
+}
+
+.profile-editor {
+  width: 50rem;
+  max-width: 80vw;
+  background-color: var(--global-backdrop);
+  color: var(--global-color);
+  align-items: stretch;
+  padding: 2rem;
+}
+
+.profile-editor__header > .button {
+  margin-left: auto;
+}
+
+.profile-editor__form {
+  gap: 1rem;
+}
+
+.profile-editor__form :is(input[type="text"], input[type="url"], textarea) {
+  width: 100%;
+  margin-top: 5px;
+  padding: 0.5rem;
+  border: 2px solid;
+}
+
+.profile-editor__form :first-child {
+  margin: 2rem auto;
+}
+
+.avatar__img-input--hidden {
+  display: none;
+}
+
+.profile-editor .avatar__wrapper {
+  position: relative;
+}
+
+.profile-editor .avatar__wrapper > label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  color: var(--primary-color);
 }

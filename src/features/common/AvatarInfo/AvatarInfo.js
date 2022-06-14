@@ -1,9 +1,11 @@
 import { Avatar } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./AvatarInfo.css";
 
 function AvatarInfo(props) {
-  const { variant } = props;
+  const { variant, user, openUserPage } = props;
+  const navigate = useNavigate();
   return (
     <div
       className={`avatar-info ${
@@ -11,13 +13,16 @@ function AvatarInfo(props) {
       }`}
     >
       <Avatar
-        src="https://picsum.photos/id/1/200/200"
         alt="avatar"
         fontSize="large"
+        src={user.profileImage}
+        onClick={() => {
+          openUserPage && navigate(`../${user.username}`);
+        }}
       />
       <div className="avatar-info__content">
-        <p className="text-md">Ankit Joshi</p>
-        <p className="text-md">@username</p>
+        <p className="text-md">{user?.firstName + " " + user?.lastName}</p>
+        <p className="text-md">@{user?.username}</p>
       </div>
     </div>
   );

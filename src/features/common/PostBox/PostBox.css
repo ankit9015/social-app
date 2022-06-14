@@ -54,6 +54,7 @@
   background-color: inherit;
   color: inherit;
   text-align: left;
+  border: none;
 }
 
 .post__time {

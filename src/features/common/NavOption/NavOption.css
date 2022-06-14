@@ -20,7 +20,7 @@
     margin: 0 auto;
     position: relative;
   }
-
+  /* 
   .nav-option:hover::before {
     content: attr(data-tooltip);
     background-color: var(--dark-gray);
@@ -34,5 +34,5 @@
     font-weight: 700;
     border: 2px solid var(--global-color);
     border-radius: 3px;
-  }
+  } */
 }

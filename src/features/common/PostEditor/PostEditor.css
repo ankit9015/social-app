@@ -28,13 +28,13 @@
 }
 
 .modal .post-editor {
-  width: 95vw;
+  width: 90vw;
   background-color: var(--global-backdrop);
   color: var(--global-color);
 }
 
 .post-editor__post-button {
-  color: var(--global-color);
+  color: var(--white);
   padding: 0 1rem;
   margin-left: auto;
 }

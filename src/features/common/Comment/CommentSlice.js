@@ -42,12 +42,7 @@ export const deleteComment = createAsyncThunk(
   async ({ postId, commentId, authToken }) => {
     const { data } = await axios.post(
       `/api/comments/delete/${postId}/${commentId}`,
-      {
-        //  Had to give authorization in request params
-        //  since it is not showing up in request headers in authUtil in backend.
-        //  Will correct this in future
-        authorization: authToken,
-      },
+      {},
       {
         headers: {
           authorization: authToken,
@@ -60,39 +55,32 @@ export const deleteComment = createAsyncThunk(
 
 export const upVoteComment = createAsyncThunk(
   "posts/comment/upVote",
-  async ({ postId, commentId, authToken, storePosts }) => {
-    const data = await axios.post(
+  async ({ postId, commentId, authToken }) => {
+    const { data } = await axios.post(
       `/api/comments/upvote/${postId}/${commentId}`,
+      {},
       {
         headers: {
           authorization: authToken,
         },
       }
     );
-    console.log(data);
-    return { ...data, storePosts };
+    return { ...data, postId };
   }
 );
 
 export const downVoteComment = createAsyncThunk(
   "posts/comment/downVote",
-  async ({ postId, commentId, authToken, storePosts }) => {
-    console.log(postId);
-    const data = await axios.post(
+  async ({ postId, commentId, authToken }) => {
+    const { data } = await axios.post(
       `/api/comments/downvote/${postId}/${commentId}`,
+      {},
       {
         headers: {
           authorization: authToken,
         },
       }
     );
-    console.log(data);
-    return { ...data, storePosts };
+    return { ...data, postId };
   }
 );
-
-// ---------------------------------------------------------------
-
-// work on comment function
-
-// ---------------------------------------------------------

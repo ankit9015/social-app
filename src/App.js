@@ -1,6 +1,6 @@
 import "./App.css";
 import "./utils/utility.css";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import Header from "./features/Header/Header";
 import Sidebar from "./features/Sidebar/Sidebar";
 import Widgets from "./features/Widgets/Widgets";
@@ -15,8 +15,14 @@ function App() {
   const forbiddenPaths = ["/login", "/signup"];
   const forbiddenLocation = forbiddenPaths.includes(location.pathname);
 
+  useLayoutEffect(() => {
+    const el = document.getElementById("app");
+    el.setAttribute("data-theme", isDarkTheme ? "dark" : "light");
+    return () => el.removeAttribute("data-theme");
+  }, [isDarkTheme]);
+
   return (
-    <div data-theme={isDarkTheme ? "dark" : "light"} className="app">
+    <div className="app" id="app">
       <Header setSidebarToggle={setSidebarToggle} />
       <div className="app-body flex-row">
         {!forbiddenLocation && (

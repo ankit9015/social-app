@@ -25,7 +25,9 @@ function Sidebar({ sidebarToggle, setSidebarToggle }) {
   const [showModal, setShowModal] = useState(false);
   return (
     <aside
-      className={`sidebar flex-column ${sidebarToggle ? "" : "sidebar--hide"}`}
+      className={`sidebar flex-column invisible-scroll ${
+        sidebarToggle ? "" : "sidebar--hide"
+      }`}
     >
       {isSmallScreen && (
         <>
@@ -66,12 +68,6 @@ function Sidebar({ sidebarToggle, setSidebarToggle }) {
         link="bookmarks"
         Icon={BookmarkBorderIcon}
         title="Bookmarks"
-      />
-      <NavOption
-        onClick={() => setSidebarToggle(false)}
-        link="notifications"
-        Icon={NotificationsNoneIcon}
-        title="Notifications"
       />
       <NavOption
         onClick={() => setSidebarToggle(false)}

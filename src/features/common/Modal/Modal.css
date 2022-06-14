@@ -1,8 +1,10 @@
 .modal {
   width: auto;
   height: auto;
+  max-height: 85vh;
+  overflow-y: scroll;
   position: absolute;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   z-index: 999;
 }
 
