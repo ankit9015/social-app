@@ -119,11 +119,16 @@ const postsSlice = createSlice({
     });
     builder.addCase(editPost.fulfilled, (state, action) => {
       state.loading = false;
+      const { posts, postId: currPostId } = action.payload;
       state.message = "Post edited";
-      state.posts = action.payload.posts;
+      state.posts = state.posts.map((post) =>
+        post._id === currPostId
+          ? posts.find((post) => post._id === currPostId)
+          : post
+      );
       state.userPosts = state.userPosts.map((post) =>
-        post._id === action.payload.postId
-          ? { ...post, content: action.payload.postData }
+        post._id === currPostId
+          ? posts.find((post) => post._id === currPostId)
           : post
       );
     });

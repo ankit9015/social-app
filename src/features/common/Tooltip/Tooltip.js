@@ -20,14 +20,13 @@ function Tooltip({ title, children }) {
   };
 
   useEffect(() => {
+    const childCopy = childRef.current;
     if (showTooltip) {
-      window.addEventListener("resize", () =>
-        debounceUpdateCoords(childRef.current)
-      );
+      window.addEventListener("resize", () => debounceUpdateCoords(childCopy));
 
       return () =>
         window.removeEventListener("resize", () =>
-          debounceUpdateCoords(childRef.current)
+          debounceUpdateCoords(childCopy)
         );
     }
   }, [debounceUpdateCoords, showTooltip]);
