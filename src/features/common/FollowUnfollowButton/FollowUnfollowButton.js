@@ -22,7 +22,7 @@ function FollowUnfollowButton({ currUser }) {
     if (usersMessage) {
       addToast(usersMessage);
     }
-  }, [usersMessage]);
+  }, [usersMessage, addToast]);
   return (
     <>
       {isFollowing ? (
