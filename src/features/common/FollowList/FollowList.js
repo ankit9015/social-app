@@ -14,7 +14,6 @@ function FollowList() {
   useEffect(() => {
     (async () => {
       const data = await dispatch(getAllUsers()).unwrap();
-      console.log(data);
       setAllUsers(data.users);
     })();
   }, [dispatch]);

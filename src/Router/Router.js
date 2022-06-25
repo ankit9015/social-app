@@ -9,15 +9,16 @@ import {
   Signup,
   ProfilePage,
   ProfileEdit,
+  LandingPage,
 } from "../features";
 import PrivateRoute from "./PrivateRoute";
 
 function Router() {
   return (
     <Routes>
-      {/* <Route path="/" element={<div>landing page</div>} /> */}
+      <Route path="/" element={<LandingPage />} />
       <Route
-        path="/"
+        path="home"
         element={
           <PrivateRoute>
             <HomePage />

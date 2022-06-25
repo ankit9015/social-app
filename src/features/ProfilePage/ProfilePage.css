@@ -28,6 +28,7 @@
 .profile__stats {
   height: 8rem;
   width: 30rem;
+  max-width: 90%;
   margin: 2rem;
   border: 2px solid var(--gray);
   align-items: center;
@@ -81,4 +82,11 @@
   z-index: 2;
   transform: translate(-50%, -50%);
   color: var(--primary-color);
+}
+
+.profile__follow-list,
+.profile__posts {
+  margin-bottom: 2rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }

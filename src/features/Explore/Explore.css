@@ -1,0 +1,17 @@
+.explore {
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  gap: 1rem;
+}
+
+.explore__header {
+  height: 4rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.explore > * {
+  width: 100%;
+}

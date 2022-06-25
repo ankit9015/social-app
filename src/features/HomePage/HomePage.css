@@ -10,6 +10,11 @@
   width: 100%;
 }
 
+.home__posts-header {
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
 .create-post__floating-button {
   display: grid;
   place-items: center;

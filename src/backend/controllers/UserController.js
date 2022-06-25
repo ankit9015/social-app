@@ -208,7 +208,7 @@ export const followUserHandler = function (schema, request) {
   const followUser = schema.users.findBy({
     username: followUserUsername,
   }).attrs;
-  // console.log(followUser);
+
   try {
     if (!user) {
       return new Response(
@@ -245,7 +245,7 @@ export const followUserHandler = function (schema, request) {
       { _id: followUser._id },
       { ...updatedFollowUser, updatedAt: formatDate() }
     );
-    console.log(updatedFollowUser);
+
     return new Response(
       200,
       {},

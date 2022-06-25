@@ -15,7 +15,7 @@ function AvatarInfo(props) {
       <Avatar
         alt="avatar"
         fontSize="large"
-        src={user.profileImage}
+        src={user?.profileImage}
         onClick={() => {
           openUserPage && navigate(`../${user.username}`);
         }}

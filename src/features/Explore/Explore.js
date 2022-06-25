@@ -1,30 +1,31 @@
-import React, { useState } from "react";
-import { addToast } from "../common/Toast/ToastSlice";
-import { useDispatch } from "react-redux";
-import { useToast } from "../common/Toast/ToastProvider";
+import React, { useEffect } from "react";
+import "./Explore.css";
+import { useDispatch, useSelector } from "react-redux";
+import { FilterDropdown, PostBox } from "../common";
+import { getPosts } from "../HomePage/HomePageSlice";
 
 function Explore() {
-  const [toast, setToast] = useState("");
-  // const dispatch = useDispatch();
-  const { addToast } = useToast();
+  const { posts } = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    (async () => {
+      await dispatch(getPosts()).unwrap();
+    })();
+  }, [dispatch]);
+
   return (
-    <div>
-      <input
-        type="text"
-        value={toast}
-        onChange={(e) => setToast(e.target.value)}
-      />
-      <button
-        onClick={() => {
-          if (toast) {
-            addToast(toast);
-            setToast("");
-          }
-        }}
-      >
-        add
-      </button>
-    </div>
+    <main className="explore flex-column">
+      <div className="explore__header flex-row">
+        <h1 className="text-md">Explore</h1>
+        <FilterDropdown />
+      </div>
+      {posts &&
+        posts.map((post) => (
+          <div key={post._id}>
+            <PostBox post={post} />
+          </div>
+        ))}
+    </main>
   );
 }
 

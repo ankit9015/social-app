@@ -11,7 +11,6 @@ function ToastProvider({ children }) {
   };
 
   const removeToast = (id) => {
-    console.log("remove", id);
     setToasts((toasts) => toasts.filter((t) => t.id !== id));
   };
   return (

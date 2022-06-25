@@ -16,11 +16,11 @@ const root = createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ToastProvider>
-        <Provider store={store}>
+      <Provider store={store}>
+        <ToastProvider>
           <App />
-        </Provider>
-      </ToastProvider>
+        </ToastProvider>
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );

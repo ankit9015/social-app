@@ -21,7 +21,6 @@ function Tooltip({ title, children }) {
 
   useEffect(() => {
     if (showTooltip) {
-      console.log("I did");
       window.addEventListener("resize", () =>
         debounceUpdateCoords(childRef.current)
       );

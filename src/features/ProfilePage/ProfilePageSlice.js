@@ -28,7 +28,6 @@ export const editUserInfo = createAsyncThunk(
         },
       }
     );
-    console.log(data);
     return data;
   }
 );
@@ -45,7 +44,6 @@ export const followUser = createAsyncThunk(
         },
       }
     );
-    console.log(data);
     return data;
   }
 );

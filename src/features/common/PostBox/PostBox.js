@@ -100,6 +100,7 @@ function PostBox({ post }) {
                                 authToken,
                               })
                         ).unwrap();
+                        setShowOptionsModal(false);
                       }}
                     >
                       {isFollowing ? "Unfollow" : "Follow"} @{post.username}
@@ -162,7 +163,6 @@ function PostBox({ post }) {
           <span
             className="pointer"
             onClick={() => {
-              console.log(post);
               dispatch(
                 hasLiked
                   ? dislikePost({ postId: post._id, authToken })

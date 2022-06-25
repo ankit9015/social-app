@@ -1,12 +1,15 @@
 import { Avatar } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { editUserInfo } from "./ProfilePageSlice";
 import "./ProfilePage.css";
 import { AddAPhotoOutlinedIcon } from "../../icon";
+import { useToast } from "../common/Toast/ToastProvider";
 
 function ProfileEdit({ onSave }) {
   const { user, authToken } = useSelector((state) => state.auth);
+  const { message: usersMessage } = useSelector((state) => state.users);
+  const { addToast } = useToast();
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     firstName: user.firstName ?? "",
@@ -20,6 +23,10 @@ function ProfileEdit({ onSave }) {
     dispatch(editUserInfo({ userData: formData, authToken }));
     onSave();
   };
+
+  useEffect(() => {
+    addToast(usersMessage);
+  }, [usersMessage, addToast]);
 
   return (
     <div className="profile-editor flex-column">

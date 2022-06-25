@@ -1,17 +1,26 @@
 import { Avatar } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addComment, editComment } from "../Comment/CommentSlice";
 import { editPost } from "../PostBox/PostBoxSlice";
+import { useToast } from "../Toast/ToastProvider";
 import "./PostEditor.css";
 import { createPost } from "./PostEditorSlice";
 
 function PostEditor({ currPost, closeEditor, commentOn }) {
   const dispatch = useDispatch();
   const { user, authToken } = useSelector((state) => state.auth);
+  const { message: postsMessage } = useSelector((state) => state.posts);
+  const { addToast } = useToast();
   const [formData, setFormData] = useState(
     currPost?.content ? { content: currPost.content } : {}
   );
+
+  useEffect(() => {
+    if (postsMessage) {
+      addToast(postsMessage);
+    }
+  }, [postsMessage]);
 
   const submitHandler = (e) => {
     e.preventDefault();

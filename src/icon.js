@@ -25,7 +25,9 @@ import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
-
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import CloseIcon from "@mui/icons-material/Close";
+import PostAddIcon from "@mui/icons-material/PostAdd";
 export {
   HomeOutlinedIcon,
   RocketOutlinedIcon,
@@ -54,4 +56,7 @@ export {
   ThumbUpOutlinedIcon,
   BookmarkIcon,
   AddAPhotoOutlinedIcon,
+  ArrowDropDownIcon,
+  CloseIcon,
+  PostAddIcon,
 };

@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import "./ProfilePage.css";
 import { getUser, getUserPost } from "./ProfilePageSlice";
 import { useParams } from "react-router-dom";
-import { FollowUnfollowButton, Modal, PostBox } from "../common";
+import { FollowList, FollowUnfollowButton, Modal, PostBox } from "../common";
 import ProfileEdit from "./ProfileEdit";
+import { useWindowSize } from "../../helperFunction";
 
 function ProfilePage() {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ function ProfilePage() {
   const [posts, setPosts] = useState([]);
   const [showEditModal, setShowEditModal] = useState(false);
   const { username } = useParams();
+  const { width: screenWidth } = useWindowSize();
 
   useEffect(() => {
     (async () => {
@@ -76,6 +78,11 @@ function ProfilePage() {
           </div>
         </div>
       </section>
+      {screenWidth < 900 && (
+        <section className="profile__follow-list">
+          <FollowList />
+        </section>
+      )}
       <section className="profile__posts flex-column">
         <h1 className="font-bold text-md">Your Posts</h1>
         {posts && posts.map((post) => <PostBox key={post._id} post={post} />)}

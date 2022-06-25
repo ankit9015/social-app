@@ -12,6 +12,7 @@ import Comment from "./Comment/Comment";
 import FollowUnfollowButton from "./FollowUnfollowButton/FollowUnfollowButton";
 import Tooltip from "./Tooltip/Tooltip";
 import Toast from "./Toast/Toast";
+import FilterDropdown from "./FilterDropdown/FilterDropdown";
 
 export {
   SearchBox,
@@ -28,4 +29,5 @@ export {
   FollowUnfollowButton,
   Tooltip,
   Toast,
+  FilterDropdown,
 };

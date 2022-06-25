@@ -41,7 +41,7 @@ export const likePost = createAsyncThunk(
         headers: { authorization: authToken },
       }
     );
-    return data;
+    return { ...data, postId };
   }
 );
 
@@ -55,7 +55,7 @@ export const dislikePost = createAsyncThunk(
         headers: { authorization: authToken },
       }
     );
-    return data;
+    return { ...data, postId };
   }
 );
 

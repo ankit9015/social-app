@@ -6,6 +6,7 @@ import Signup from "./auth/Signup";
 import ProfilePage from "./ProfilePage/ProfilePage";
 import Post from "./Post/Post";
 import ProfileEdit from "./ProfilePage/ProfileEdit";
+import LandingPage from "./LandingPage/LandingPage";
 export {
   HomePage,
   Explore,
@@ -15,4 +16,5 @@ export {
   Signup,
   ProfilePage,
   ProfileEdit,
+  LandingPage,
 };

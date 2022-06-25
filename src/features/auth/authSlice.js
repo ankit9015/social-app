@@ -59,7 +59,6 @@ export const authSlice = createSlice({
     });
 
     builder.addCase(loginUser.fulfilled, (state, action) => {
-      console.log(action);
       state.loading = false;
       state.authToken = action.payload.encodedToken;
       state.user = action.payload.foundUser;
