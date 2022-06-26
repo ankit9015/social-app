@@ -142,12 +142,11 @@ function Comment({ comment, post }) {
           <span
             onClick={() =>
               dispatch(
-                hasUpVoted &&
-                  upVoteComment({
-                    postId: post._id,
-                    commentId: comment._id,
-                    authToken,
-                  })
+                upVoteComment({
+                  postId: post._id,
+                  commentId: comment._id,
+                  authToken,
+                })
               ).unwrap()
             }
           >

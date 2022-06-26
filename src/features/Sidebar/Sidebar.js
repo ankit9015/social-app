@@ -50,7 +50,7 @@ function Sidebar({ sidebarToggle, setSidebarToggle }) {
       )}
       <NavOption
         onClick={() => setSidebarToggle(false)}
-        link="/"
+        link="/home"
         Icon={HomeOutlinedIcon}
         title="Home"
       />

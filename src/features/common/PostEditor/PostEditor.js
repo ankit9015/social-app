@@ -20,7 +20,7 @@ function PostEditor({ currPost, closeEditor, commentOn }) {
     if (postsMessage) {
       addToast(postsMessage);
     }
-  }, [postsMessage, addToast]);
+  }, [addToast, postsMessage]);
 
   const submitHandler = (e) => {
     e.preventDefault();

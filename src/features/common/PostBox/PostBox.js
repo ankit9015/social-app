@@ -109,7 +109,9 @@ function PostBox({ post }) {
                   {isUserPost && (
                     <>
                       <button
-                        onClick={() => setShowEditModal((prev) => !prev)}
+                        onClick={() => {
+                          setShowEditModal((prev) => !prev);
+                        }}
                         className="text-md pointer"
                       >
                         Edit
@@ -117,8 +119,8 @@ function PostBox({ post }) {
                           <PostBoxEditModal
                             post={post}
                             exitModal={() => {
-                              setShowEditModal(false);
                               setShowOptionsModal(false);
+                              setShowEditModal(false);
                             }}
                           />
                         )}
