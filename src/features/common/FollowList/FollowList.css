@@ -28,7 +28,7 @@
   border: 1px solid;
   border-radius: 2px;
   margin: 5px;
-  color: var(--dark-gray);
+  color: var(--gray);
 }
 
 .follower__badge,

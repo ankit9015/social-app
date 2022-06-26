@@ -1,17 +1,26 @@
 import { Avatar } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addComment, editComment } from "../Comment/CommentSlice";
 import { editPost } from "../PostBox/PostBoxSlice";
+import { useToast } from "../Toast/ToastProvider";
 import "./PostEditor.css";
 import { createPost } from "./PostEditorSlice";
 
 function PostEditor({ currPost, closeEditor, commentOn }) {
   const dispatch = useDispatch();
-  const { authToken } = useSelector((state) => state.auth);
+  const { user, authToken } = useSelector((state) => state.auth);
+  const { message: postsMessage } = useSelector((state) => state.posts);
+  const { addToast } = useToast();
   const [formData, setFormData] = useState(
     currPost?.content ? { content: currPost.content } : {}
   );
+
+  useEffect(() => {
+    if (postsMessage) {
+      addToast(postsMessage);
+    }
+  }, [addToast, postsMessage]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -53,7 +62,7 @@ function PostEditor({ currPost, closeEditor, commentOn }) {
   };
   return (
     <div className="post-editor">
-      <Avatar className="post-editor__avatar" />
+      <Avatar className="post-editor__avatar" src={user.profileImage} />
       <form className="post-editor__form">
         <textarea
           className="post-editor__text-input"

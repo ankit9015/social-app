@@ -1,5 +1,6 @@
 .sidebar {
   width: 30rem;
+  max-width: 90vw;
   position: fixed;
   left: 0;
   top: 0;
@@ -8,6 +9,8 @@
   transition: transform 1s;
   background-color: var(--global-backdrop);
   border-right: 2px solid;
+  padding-right: 1rem;
+  overflow-y: scroll;
 }
 
 .sidebar--hide {
@@ -62,7 +65,7 @@
 @media screen and (min-width: 500px) {
   .sidebar {
     position: relative;
-    z-index: 0;
+    z-index: 99;
     transform: translateX(0%);
     padding-top: 2rem;
     transition: none;
@@ -71,7 +74,7 @@
     min-height: calc(100vh - 6rem);
   }
 
-  .sidebar * {
+  .sidebar > * {
     width: 90%;
     border-radius: 99rem;
   }

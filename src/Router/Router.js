@@ -1,15 +1,24 @@
 import { Routes, Route } from "react-router-dom";
-
 import React from "react";
-import { Bookmarks, Explore, HomePage, Login, Post, Signup } from "../features";
+import {
+  Bookmarks,
+  Explore,
+  HomePage,
+  Login,
+  Post,
+  Signup,
+  ProfilePage,
+  ProfileEdit,
+  LandingPage,
+} from "../features";
 import PrivateRoute from "./PrivateRoute";
 
 function Router() {
   return (
     <Routes>
-      {/* <Route path="/" element={<div>landing page</div>} /> */}
+      <Route path="/" element={<LandingPage />} />
       <Route
-        path="/"
+        path="home"
         element={
           <PrivateRoute>
             <HomePage />
@@ -32,7 +41,30 @@ function Router() {
           </PrivateRoute>
         }
       />
-      <Route path="post/:postId" element={<Post />} />
+      <Route
+        path=":username"
+        element={
+          <PrivateRoute>
+            <ProfilePage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="profile-edit"
+        element={
+          <PrivateRoute>
+            <ProfileEdit />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/:username/:postId"
+        element={
+          <PrivateRoute>
+            <Post />
+          </PrivateRoute>
+        }
+      />
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<Signup />} />
       <Route

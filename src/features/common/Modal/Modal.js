@@ -2,10 +2,8 @@ import React, { useEffect } from "react";
 import "./Modal.css";
 import { debounce } from "lodash";
 import Portal from "../../../Portal";
-import { useSelector } from "react-redux";
 
 function Modal({ children, coords, updateCoords, position }) {
-  const { isDarkTheme } = useSelector((state) => state.theme);
   const debounceUpdateCoords = updateCoords
     ? debounce(updateCoords, 100)
     : null;
@@ -18,9 +16,9 @@ function Modal({ children, coords, updateCoords, position }) {
   }, [debounceUpdateCoords]);
 
   let styleCoords = coords
-    ? { ...coords }
+    ? { top: coords.top, left: coords.left }
     : {
-        top: "10rem",
+        top: "50%",
         left: "50%",
       };
   return (
@@ -32,9 +30,10 @@ function Modal({ children, coords, updateCoords, position }) {
         className="modal__backdrop"
       ></div>
       <div
-        data-theme={isDarkTheme ? "dark" : "light"}
         style={styleCoords}
-        className={`modal ${position ? position : coords ? "top" : ""}`}
+        className={`modal invisible-scroll ${
+          position ? position : coords ? "top" : ""
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="modal__content">{children}</div>

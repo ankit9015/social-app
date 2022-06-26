@@ -1,6 +1,7 @@
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import RocketOutlinedIcon from "@mui/icons-material/RocketOutlined";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SearchIcon from "@mui/icons-material/Search";
@@ -23,7 +24,10 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
-
+import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import CloseIcon from "@mui/icons-material/Close";
+import PostAddIcon from "@mui/icons-material/PostAdd";
 export {
   HomeOutlinedIcon,
   RocketOutlinedIcon,
@@ -50,4 +54,9 @@ export {
   ThumbDownOutlinedIcon,
   ThumbUpIcon,
   ThumbUpOutlinedIcon,
+  BookmarkIcon,
+  AddAPhotoOutlinedIcon,
+  ArrowDropDownIcon,
+  CloseIcon,
+  PostAddIcon,
 };

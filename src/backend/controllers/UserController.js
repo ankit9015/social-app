@@ -20,9 +20,12 @@ export const getAllUsersHandler = function () {
  * */
 
 export const getUserHandler = function (schema, request) {
-  const userId = request.params.userId;
+  // userId is taking username in getUser() api call but
+  // since request params is taking the value as userId here
+  //we are changing names from userId to username
+  const { userId: username } = request.params;
   try {
-    const user = schema.users.findBy({ _id: userId }).attrs;
+    const user = schema.users.findBy({ username: username }).attrs;
     return new Response(200, {}, { user });
   } catch (error) {
     return new Response(
@@ -201,8 +204,11 @@ export const removePostFromBookmarkHandler = function (schema, request) {
 
 export const followUserHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
-  const { followUserId } = request.params;
-  const followUser = schema.users.findBy({ _id: followUserId }).attrs;
+  const { followUserId: followUserUsername } = request.params;
+  const followUser = schema.users.findBy({
+    username: followUserUsername,
+  }).attrs;
+
   try {
     if (!user) {
       return new Response(
@@ -239,6 +245,7 @@ export const followUserHandler = function (schema, request) {
       { _id: followUser._id },
       { ...updatedFollowUser, updatedAt: formatDate() }
     );
+
     return new Response(
       200,
       {},
@@ -262,8 +269,8 @@ export const followUserHandler = function (schema, request) {
 
 export const unfollowUserHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
-  const { followUserId } = request.params;
-  const followUser = this.db.users.findBy({ _id: followUserId });
+  const { followUserId: followUserUsername } = request.params;
+  const followUser = this.db.users.findBy({ username: followUserUsername });
   try {
     if (!user) {
       return new Response(

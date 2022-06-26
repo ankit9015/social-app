@@ -33,7 +33,7 @@ function Login() {
   const loginHandler = async (loginForm) => {
     try {
       await dispatch(loginUser(loginForm)).unwrap();
-      location.state ? navigate(location.state.from) : navigate("/");
+      location.state ? navigate(location.state.from) : navigate("/home");
     } catch (err) {
       console.log(err);
     }

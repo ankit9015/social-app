@@ -1,0 +1,59 @@
+.landing-page {
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.landing-page__image > img {
+  width: 40rem;
+  max-width: 80vw;
+}
+
+.landing-page__image {
+  width: fit-content;
+  margin-top: 10rem;
+  margin-left: 5rem;
+}
+
+.landing-page__content {
+  margin-top: 10rem;
+  width: 40rem;
+  max-width: 85vw;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.landing-page__logo {
+  font-size: 3rem;
+  width: 100%;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+}
+
+.landing-page__content .slogan .highlight {
+  padding-left: 1rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.landing-page__content .highlight {
+  color: var(--primary-color);
+  font: bold;
+}
+
+.landing-page__content .button {
+  width: 30rem;
+  max-width: 90%;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+@media screen and (max-width: 800px) {
+  .landing-page__image,
+  .landing-page__content {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

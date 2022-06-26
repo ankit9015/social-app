@@ -1,5 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import {
+  editUserInfo,
+  followUser,
+  unfollowUser,
+} from "../ProfilePage/ProfilePageSlice";
 
 const authToken = JSON.parse(localStorage.getItem("authToken"));
 const user = JSON.parse(localStorage.getItem("user"));
@@ -54,7 +59,6 @@ export const authSlice = createSlice({
     });
 
     builder.addCase(loginUser.fulfilled, (state, action) => {
-      console.log(action);
       state.loading = false;
       state.authToken = action.payload.encodedToken;
       state.user = action.payload.foundUser;
@@ -83,6 +87,39 @@ export const authSlice = createSlice({
         JSON.stringify(action.payload.encodedToken)
       );
       localStorage.setItem("user", JSON.stringify(action.payload.createdUser));
+    });
+    builder.addCase(editUserInfo.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(editUserInfo.rejected, (state) => {
+      state.loading = false;
+      console.log("error");
+    });
+    builder.addCase(editUserInfo.fulfilled, (state, action) => {
+      state.loading = false;
+      state.user = action.payload.user;
+    });
+    builder.addCase(followUser.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(followUser.rejected, (state) => {
+      state.loading = false;
+      console.log("error");
+    });
+    builder.addCase(followUser.fulfilled, (state, action) => {
+      state.loading = false;
+      state.user = action.payload.user;
+    });
+    builder.addCase(unfollowUser.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(unfollowUser.rejected, (state) => {
+      state.loading = false;
+      console.log("error");
+    });
+    builder.addCase(unfollowUser.fulfilled, (state, action) => {
+      state.loading = false;
+      state.user = action.payload.user;
     });
   },
 });

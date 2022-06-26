@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./FollowList.css";
 import AvatarInfo from "../AvatarInfo/AvatarInfo";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllUsers } from "../../user/userSlice";
+import FollowUnfollowButton from "../FollowUnfollowButton/FollowUnfollowButton";
+import { useNavigate } from "react-router-dom";
 
 function FollowList() {
+  const [allUsers, setAllUsers] = useState(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+  useEffect(() => {
+    (async () => {
+      const data = await dispatch(getAllUsers()).unwrap();
+      setAllUsers(data.users);
+    })();
+  }, [dispatch]);
+
+  const isFollower = (suggestion) =>
+    user.followers.find((follower) => follower._id === suggestion._id);
+
+  const suggestedUsers = allUsers
+    ? allUsers.filter((_user) => _user.username !== user.username)
+    : [];
+
   return (
     <div className="follow-list flex-column">
       <div className="follow-list__header flex-row">
@@ -10,13 +32,26 @@ function FollowList() {
         <span className="text-md">Show More</span>
       </div>
       <ul>
-        <li className="follow-list__account">
-          <AvatarInfo variant="horizontal" />
-          <span className="follower__badge text-sm">Follows you</span>
-          <button className="follow-button button button-secondary text-md">
-            Follow
-          </button>
-        </li>
+        {suggestedUsers &&
+          suggestedUsers.map(
+            (suggestedUser) =>
+              suggestedUser._id !== user._id && (
+                <li key={suggestedUser._id} className="follow-list__account">
+                  <AvatarInfo
+                    user={suggestedUser}
+                    variant="horizontal"
+                    openUserPage="true"
+                    onClick={() => navigate(`../${user.username}`)}
+                  />
+                  {isFollower(suggestedUser) && (
+                    <span className="follower__badge text-sm font-bold">
+                      Follows you
+                    </span>
+                  )}
+                  <FollowUnfollowButton currUser={suggestedUser} />
+                </li>
+              )
+          )}
       </ul>
     </div>
   );

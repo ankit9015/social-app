@@ -55,6 +55,7 @@ export const addPostCommentHandler = function (schema, request) {
       username: user.username,
       firstName: user.firstName,
       lastName: user.lastName,
+      profileImage: user.profileImage,
       votes: { upvotedBy: [], downvotedBy: [] },
       createdAt: formatDate(),
       updatedAt: formatDate(),

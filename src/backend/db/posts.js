@@ -16,15 +16,17 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
-    username: "adarshbalika",
-    firstName: "adarsh",
-    lastName: "balika",
+    username: "karanSharma",
+    firstName: "Karan",
+    lastName: "Sharma",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     comments: [
       {
         _id: uuid(),
-        username: "shubhamsoni",
+        username: "shubhamSoni",
+        firstName: "Shubham",
+        lastName: "Shah",
         content: "Interesting",
         votes: {
           upvotedBy: [],
@@ -33,7 +35,9 @@ export const posts = [
       },
       {
         _id: uuid(),
-        username: "sohamshah",
+        username: "sohamShah",
+        firstName: "Soham",
+        lastName: "Shah",
         content: "Wow!",
         votes: {
           upvotedBy: [],
@@ -51,15 +55,15 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
-    username: "shubhamsoni",
-    firstName: "shubham",
-    lastName: "soni",
+    username: "shubhamSoni",
+    firstName: "Shubham",
+    lastName: "Soni",
     comments: [
       {
         _id: uuid(),
-        username: "shubhamsoni",
-        firstName: "shubham",
-        lastName: "soni",
+        username: "shubhamSoni",
+        firstName: "Shubham",
+        lastName: "Soni",
         content: "Interesting",
         votes: {
           upvotedBy: [],
@@ -68,9 +72,9 @@ export const posts = [
       },
       {
         _id: uuid(),
-        username: "sohamshah",
-        firstName: "soham",
-        lastName: "shah",
+        username: "sohamShah",
+        firstName: "Soham",
+        lastName: "Shah",
         content: "Wow!",
         votes: {
           upvotedBy: [],

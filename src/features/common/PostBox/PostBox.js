@@ -2,6 +2,7 @@ import { Avatar } from "@mui/material";
 import React, { useRef, useState } from "react";
 import {
   BookmarkBorderIcon,
+  BookmarkIcon,
   ChatBubbleOutlineOutlinedIcon,
   FavoriteBorderIcon,
   FavoriteIcon,
@@ -21,6 +22,7 @@ import {
 import PostBoxEditModal from "./PostBoxEditModal";
 import { useLocation, useNavigate } from "react-router-dom";
 import PostEditor from "../PostEditor/PostEditor";
+import { followUser, unfollowUser } from "../../ProfilePage/ProfilePageSlice";
 
 function PostBox({ post }) {
   const createdAt = new Date(post.createdAt);
@@ -30,8 +32,8 @@ function PostBox({ post }) {
   const [commentModal, setcommentModal] = useState(false);
   const { coords, updateCoords } = usePosition();
   const optionsRef = useRef(null);
-  const { isDarkTheme } = useSelector((state) => state.theme);
   const { authToken, user } = useSelector((state) => state.auth);
+  const { bookmarks } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
@@ -41,11 +43,19 @@ function PostBox({ post }) {
 
   const isLocationPost = location.pathname.includes("post");
   const isUserPost = post.username === user.username;
+  const isInBookmarks = bookmarks?.find((_post) => _post._id === post._id);
+  const isFollowing = user.following.find(
+    (follow) => follow.username === post.username
+  );
 
   return (
     <div className="post-box flex-row">
       <div className="post-box__left">
-        <Avatar className="post-box__avatar" />
+        <Avatar
+          className="post-box__avatar"
+          onClick={() => navigate(`../${post.username}`)}
+          src={post.profileImage}
+        />
       </div>
       <div className="post-box__right flex-column">
         <div className="post-box__header flex-row text-md">
@@ -74,19 +84,34 @@ function PostBox({ post }) {
                 updateCoords={() => updateCoords(optionsRef.current)}
                 position="bottom-left"
               >
-                <div
-                  data-theme={isDarkTheme ? "dark" : "light"}
-                  className="post-box__options-modal flex-column"
-                >
+                <div className="post-box__options-modal flex-column">
                   {!isUserPost && (
-                    <button className="text-md pointer">
-                      Unfollow @{post.username}
+                    <button
+                      className="text-md pointer"
+                      onClick={() => {
+                        dispatch(
+                          isFollowing
+                            ? unfollowUser({
+                                followUserUsername: post.username,
+                                authToken,
+                              })
+                            : followUser({
+                                followUserUsername: post.username,
+                                authToken,
+                              })
+                        ).unwrap();
+                        setShowOptionsModal(false);
+                      }}
+                    >
+                      {isFollowing ? "Unfollow" : "Follow"} @{post.username}
                     </button>
                   )}
                   {isUserPost && (
                     <>
                       <button
-                        onClick={() => setShowEditModal((prev) => !prev)}
+                        onClick={() => {
+                          setShowEditModal((prev) => !prev);
+                        }}
                         className="text-md pointer"
                       >
                         Edit
@@ -94,8 +119,8 @@ function PostBox({ post }) {
                           <PostBoxEditModal
                             post={post}
                             exitModal={() => {
-                              setShowEditModal(false);
                               setShowOptionsModal(false);
+                              setShowEditModal(false);
                             }}
                           />
                         )}
@@ -120,7 +145,7 @@ function PostBox({ post }) {
         <div
           onClick={() => {
             if (!isLocationPost) {
-              navigate(`post/${post._id}`);
+              navigate(`../${post.username}/${post._id}`);
             }
           }}
           className="post-box__content text-md"
@@ -139,13 +164,13 @@ function PostBox({ post }) {
         <div className="post-box__footer flex-row">
           <span
             className="pointer"
-            onClick={() =>
+            onClick={() => {
               dispatch(
                 hasLiked
                   ? dislikePost({ postId: post._id, authToken })
                   : likePost({ postId: post._id, authToken })
-              ).unwrap()
-            }
+              ).unwrap();
+            }}
           >
             {hasLiked ? (
               <FavoriteIcon fontSize="large" style={{ color: "red" }} />
@@ -174,14 +199,18 @@ function PostBox({ post }) {
           <span
             onClick={() =>
               dispatch(
-                hasLiked
+                isInBookmarks
                   ? removeBookmarkPost({ postId: post._id, authToken })
                   : bookmarkPost({ postId: post._id, authToken })
               ).unwrap()
             }
             className="pointer"
           >
-            <BookmarkBorderIcon fontSize="large" />
+            {isInBookmarks ? (
+              <BookmarkIcon fontSize="large" />
+            ) : (
+              <BookmarkBorderIcon fontSize="large" />
+            )}
           </span>
         </div>
       </div>

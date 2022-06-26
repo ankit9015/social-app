@@ -4,25 +4,47 @@ import { Avatar } from "@mui/material";
 
 import { useDispatch, useSelector } from "react-redux";
 import { usePosition } from "../../../helperFunction";
-import { MoreHorizIcon } from "../../../icon";
+import {
+  MoreHorizIcon,
+  ThumbDownIcon,
+  ThumbDownOutlinedIcon,
+  ThumbUpIcon,
+  ThumbUpOutlinedIcon,
+} from "../../../icon";
 import Modal from "../Modal/Modal";
 import PostEditor from "../PostEditor/PostEditor";
-import { deleteComment } from "./CommentSlice";
+import { deleteComment, downVoteComment, upVoteComment } from "./CommentSlice";
+import { useNavigate } from "react-router-dom";
+import { followUser, unfollowUser } from "../../ProfilePage/ProfilePageSlice";
 
 function Comment({ comment, post }) {
   const [showOptionsModal, setShowOptionsModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const { coords, updateCoords } = usePosition();
   const optionsRef = useRef(null);
-  const { isDarkTheme } = useSelector((state) => state.theme);
   const { authToken, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const isUserComment = comment.username === user.username;
+  const hasUpVoted = comment.votes.upvotedBy.find(
+    (_user) => _user.username === user.username
+  );
+  const hasDownVoted = comment.votes.downvotedBy.find(
+    (_user) => _user.username === user.username
+  );
+  const isFollowing = user.following.find(
+    (follow) => follow.username === comment.username
+  );
+
   return (
     <div className="comment flex-row">
       <div className="comment__left">
-        <Avatar className="comment__avatar" />
+        <Avatar
+          className="comment__avatar"
+          onClick={() => navigate(`../${comment.username}`)}
+          src={comment.profileImage}
+        />
       </div>
       <div className="comment__right flex-column">
         <div className="comment__header flex-row text-md">
@@ -46,13 +68,25 @@ function Comment({ comment, post }) {
                 updateCoords={() => updateCoords(optionsRef.current)}
                 position="bottom-left"
               >
-                <div
-                  data-theme={isDarkTheme ? "dark" : "light"}
-                  className="comment__options-modal flex-column"
-                >
+                <div className="comment__options-modal flex-column">
                   {!isUserComment && (
-                    <button className="text-md pointer">
-                      Unfollow @{comment.username}
+                    <button
+                      className="text-md pointer"
+                      onClick={() => {
+                        dispatch(
+                          isFollowing
+                            ? unfollowUser({
+                                followUserUsername: comment.username,
+                                authToken,
+                              })
+                            : followUser({
+                                followUserUsername: comment.username,
+                                authToken,
+                              })
+                        ).unwrap();
+                      }}
+                    >
+                      {isFollowing ? "Unfollow" : "Follow"} @{comment.username}
                     </button>
                   )}
                   {isUserComment && (
@@ -103,6 +137,48 @@ function Comment({ comment, post }) {
         </div>
         <div className="comment__content text-md">
           <p>{comment.content}</p>
+        </div>
+        <div className="comment__footer flex-row">
+          <span
+            onClick={() =>
+              dispatch(
+                upVoteComment({
+                  postId: post._id,
+                  commentId: comment._id,
+                  authToken,
+                })
+              ).unwrap()
+            }
+          >
+            {hasUpVoted ? (
+              <ThumbUpIcon
+                style={{ color: "var(--primary-color)" }}
+                fontSize="large"
+              />
+            ) : (
+              <ThumbUpOutlinedIcon fontSize="large" />
+            )}
+          </span>
+          <span
+            onClick={() =>
+              dispatch(
+                downVoteComment({
+                  postId: post._id,
+                  commentId: comment._id,
+                  authToken,
+                })
+              ).unwrap()
+            }
+          >
+            {hasDownVoted ? (
+              <ThumbDownIcon
+                style={{ color: "var(--primary-color)" }}
+                fontSize="large"
+              />
+            ) : (
+              <ThumbDownOutlinedIcon fontSize="large" />
+            )}
+          </span>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./HomePage.css";
-import { Modal, PostBox, PostEditor } from "../common";
+import { FilterDropdown, Modal, PostBox, PostEditor } from "../common";
 import { AddIcon } from "../../icon";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "./HomePageSlice";
@@ -34,8 +34,9 @@ function HomePage() {
       </div>
       <PostEditor />
 
-      <div>
-        <h2 className="text-md">Latest Posts</h2>
+      <div className="home__posts-header flex-row">
+        <h2 className="text-md">Posts</h2>
+        <FilterDropdown />
       </div>
       {posts &&
         posts.map((post) => (

@@ -1,0 +1,10 @@
+.bookmarks {
+  gap: 1rem;
+  align-items: center;
+}
+
+.bookmarks__header {
+  width: 100%;
+  align-items: center;
+  height: 4rem;
+}

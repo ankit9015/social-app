@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   max-width: 100%;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid var(--gray);
   height: 6rem;
   z-index: 9;
   background-color: var(--global-backdrop);
@@ -34,10 +34,6 @@
 }
 
 @media screen and (min-width: 500px) and (max-width: 1000px) {
-  .header > .flex-row {
-    max-width: 700px;
-  }
-
   .header__menu--open {
     display: none;
   }
