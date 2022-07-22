@@ -1,4 +1,4 @@
-<h1 align="center">Post-it Music</h1>
+<h1 align="center">Post-it</h1>
 <p align="center">Post-it is a social media web app to interact with your friends and share your thoughts with the world.
 <p  align="center"><a href="https://post-it-ankit9015.netlify.app/">Live link</a> | <a href="https://github.com/ankit9015/social-app/issues">Report Bug or Request Feature</a><p>
 <br />
