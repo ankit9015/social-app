@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Bookmarks.css";
 import { useSelector } from "react-redux";
 import { PostBox } from "../common";
 
 function Bookmarks() {
   const { bookmarks } = useSelector((state) => state.posts);
+
+  useEffect(() => {
+    document.title = "Bookmarks";
+  }, []);
   return (
     <main className="bookmarks flex-column">
       <div className="bookmarks__header flex-row">

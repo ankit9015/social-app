@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./auth.css";
 import { CheckboxInput, EmailInput, PasswordInput, TextInput } from "../common";
 import { signupUser } from "./authSlice";
@@ -40,6 +40,10 @@ function Signup() {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    document.title = "Signup";
+  });
   return (
     <div className="signup">
       <h1 className="signup__header text-lg font-bold text-center">Signup</h1>

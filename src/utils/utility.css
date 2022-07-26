@@ -50,3 +50,10 @@ input:focus::placeholder {
 button:disabled {
   opacity: 0.5;
 }
+
+.grid-center {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+}

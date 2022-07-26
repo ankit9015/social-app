@@ -33,6 +33,10 @@ function ProfilePage() {
     })();
   }, [dispatch, username]);
 
+  useEffect(() => {
+    document.title = `${profile?.firstName + " " + profile?.lastName}`;
+  }, [profile?.firstName, profile?.lastName]);
+
   return (
     <main className="profile flex-column">
       <section className="profile__info flex-column text-md">
