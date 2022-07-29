@@ -12,7 +12,7 @@ function App() {
   const [sidebarToggle, setSidebarToggle] = useState(false);
   const { isDarkTheme } = useSelector((state) => state.theme);
   const location = useLocation();
-  const forbiddenPaths = ["/login", "/signup", "/"];
+  const forbiddenPaths = ["/login", "/signup", "/", "*"];
   const forbiddenLocation = forbiddenPaths.includes(location.pathname);
 
   useLayoutEffect(() => {
@@ -20,6 +20,8 @@ function App() {
     el.setAttribute("data-theme", isDarkTheme ? "dark" : "light");
     return () => el.removeAttribute("data-theme");
   }, [isDarkTheme]);
+
+  console.log(location.pathname);
 
   return (
     <div className="app" id="app">

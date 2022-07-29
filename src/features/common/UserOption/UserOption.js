@@ -37,7 +37,7 @@ function UserOption() {
             <div className="modal__header">
               <AvatarInfo variant="horizontal" user={user} />
             </div>
-            <div className="modal__content text-md">
+            <div className="modal__content pointer text-md">
               <p
                 onClick={() => {
                   dispatch(logout());

@@ -13,6 +13,10 @@ function Explore() {
     })();
   }, [dispatch]);
 
+  useEffect(() => {
+    document.title = "Explore";
+  }, []);
+
   return (
     <main className="explore flex-column">
       <div className="explore__header flex-row">

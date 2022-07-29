@@ -10,6 +10,7 @@ import {
   ProfilePage,
   ProfileEdit,
   LandingPage,
+  PageNotFound,
 } from "../features";
 import PrivateRoute from "./PrivateRoute";
 
@@ -18,7 +19,7 @@ function Router() {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route
-        path="home"
+        path="/home"
         element={
           <PrivateRoute>
             <HomePage />
@@ -26,7 +27,7 @@ function Router() {
         }
       />
       <Route
-        path="explore"
+        path="/explore"
         element={
           <PrivateRoute>
             <Explore />
@@ -34,7 +35,7 @@ function Router() {
         }
       />
       <Route
-        path="bookmarks"
+        path="/bookmarks"
         element={
           <PrivateRoute>
             <Bookmarks />
@@ -42,7 +43,7 @@ function Router() {
         }
       />
       <Route
-        path=":username"
+        path="/:username"
         element={
           <PrivateRoute>
             <ProfilePage />
@@ -50,7 +51,7 @@ function Router() {
         }
       />
       <Route
-        path="profile-edit"
+        path="/profile-edit"
         element={
           <PrivateRoute>
             <ProfileEdit />
@@ -65,16 +66,9 @@ function Router() {
           </PrivateRoute>
         }
       />
-      <Route path="login" element={<Login />} />
-      <Route path="signup" element={<Signup />} />
-      <Route
-        path="*"
-        element={
-          <div>
-            <div className="text-lg">Page not found</div>
-          </div>
-        }
-      />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
 }

@@ -8,18 +8,14 @@ function AvatarInfo(props) {
   const navigate = useNavigate();
   return (
     <div
-      className={`avatar-info ${
+      className={`avatar-info ${openUserPage ? "pointer" : ""} ${
         variant === "horizontal" ? "flex-row" : "flex-column"
       }`}
+      onClick={() => {
+        openUserPage && navigate(`../${user.username}`);
+      }}
     >
-      <Avatar
-        alt="avatar"
-        fontSize="large"
-        src={user?.profileImage}
-        onClick={() => {
-          openUserPage && navigate(`../${user.username}`);
-        }}
-      />
+      <Avatar alt="avatar" fontSize="large" src={user?.profileImage} />
       <div className="avatar-info__content">
         <p className="text-md">{user?.firstName + " " + user?.lastName}</p>
         <p className="text-md">@{user?.username}</p>

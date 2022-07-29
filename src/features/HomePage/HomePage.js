@@ -16,6 +16,10 @@ function HomePage() {
     })();
   }, [dispatch]);
 
+  useEffect(() => {
+    document.title = "Home";
+  }, []);
+
   return (
     <main className="home flex-column">
       <div

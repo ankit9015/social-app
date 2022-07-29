@@ -1,10 +1,7 @@
-.text__input,
-.email__input,
-.password__input {
+input:is(.text__input, .email__input, .password__input) {
   width: 100%;
   margin: 0;
   padding: 0 0.5rem;
-  border: none;
 }
 
 .text__input,
@@ -15,6 +12,7 @@
 .password.flex-row {
   border-bottom: 1px solid;
   gap: 1rem;
+  background-color: var(--global-backdrop);
 }
 
 input:focus {
