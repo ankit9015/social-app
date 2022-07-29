@@ -21,7 +21,7 @@ function ToastProvider({ children }) {
   );
   return (
     <ToastContext.Provider value={{ addToast, removeToast }}>
-      <ToastContainer toasts={toasts} />
+      {/* <ToastContainer toasts={toasts} /> */}
       {children}
     </ToastContext.Provider>
   );

@@ -1,29 +1,26 @@
 import React, { useEffect } from "react";
-import { defaultUsersMessage } from "../../user/userSlice";
+import { removeToast } from "./ToastSlice";
 import "./Toast.css";
-import { useToast } from "./ToastProvider";
 import { useDispatch } from "react-redux";
-import { defaultPostssMessage } from "../../posts/postsSlice";
 import { CloseIcon } from "../../../icon";
 
-function Toast({ children, id }) {
-  const { removeToast } = useToast();
+function Toast({ id, message, type, timeout }) {
   const dispatch = useDispatch();
   useEffect(() => {
     const timer = setTimeout(() => {
-      removeToast(id);
-    }, 3000);
+      dispatch(removeToast({ id }));
+    }, timeout);
 
     return () => {
       clearTimeout(timer);
-      dispatch(defaultUsersMessage());
-      dispatch(defaultPostssMessage());
+      // dispatch(defaultUsersMessage());
+      // dispatch(defaultPostssMessage());
     };
-  }, [id, dispatch, removeToast]);
+  }, [id, timeout, dispatch]);
 
   return (
     <div className="toast text-md flex-row">
-      {children} <CloseIcon onClick={() => removeToast(id)} fontSize="large" />
+      {message} <CloseIcon onClick={() => removeToast(id)} fontSize="large" />
     </div>
   );
 }
