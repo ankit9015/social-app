@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./FollowList.css";
 import AvatarInfo from "../AvatarInfo/AvatarInfo";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,12 +11,13 @@ function FollowList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
+  const getUsers = useCallback(getAllUsers, []);
   useEffect(() => {
     (async () => {
-      const data = await dispatch(getAllUsers()).unwrap();
+      const data = await dispatch(getUsers()).unwrap();
       setAllUsers(data.users);
     })();
-  }, [dispatch]);
+  }, [dispatch, getUsers]);
 
   const isFollower = (suggestion) =>
     user.followers.find((follower) => follower._id === suggestion._id);
