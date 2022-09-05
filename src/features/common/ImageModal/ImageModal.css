@@ -1,0 +1,13 @@
+.image-modal {
+  width: 80vw;
+  height: auto;
+  max-height: 80vh;
+  overflow-y: scroll;
+  object-fit: contain;
+  border: 1px solid;
+  padding: 10px;
+}
+
+.close {
+  color: var(--black);
+}

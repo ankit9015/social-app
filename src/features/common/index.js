@@ -3,6 +3,7 @@ import AvatarInfo from "./AvatarInfo/AvatarInfo";
 import Modal from "./Modal/Modal";
 import FollowList from "./FollowList/FollowList";
 import PostEditor from "./PostEditor/PostEditor";
+import PostsModalEditor from "./PostEditorModal/PostsModalEditor";
 import PostBox from "./PostBox/PostBox";
 import EmailInput from "./Input/EmailInput";
 import PasswordInput from "./Input/PasswordInput";
@@ -20,6 +21,7 @@ export {
   Modal,
   FollowList,
   PostEditor,
+  PostsModalEditor,
   PostBox,
   EmailInput,
   PasswordInput,

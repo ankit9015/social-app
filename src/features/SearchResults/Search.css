@@ -1,0 +1,10 @@
+.search-results .follow-list__account {
+  border: 1px solid;
+  width: calc(100% - 2rem);
+  max-width: 50rem;
+}
+
+.search-results > .flex-column {
+  gap: 1rem;
+  align-items: center;
+}

@@ -11,6 +11,7 @@ import {
   ProfileEdit,
   LandingPage,
   PageNotFound,
+  SearchResults,
 } from "../features";
 import PrivateRoute from "./PrivateRoute";
 
@@ -63,6 +64,14 @@ function Router() {
         element={
           <PrivateRoute>
             <Post />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/search"
+        element={
+          <PrivateRoute>
+            <SearchResults />
           </PrivateRoute>
         }
       />

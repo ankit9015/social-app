@@ -122,7 +122,7 @@ export const upVoteComment = createAsyncThunk(
     } catch {
       thunkAPI.dispatch(
         addToast({
-          message: "Couldn't upvote the comment",
+          message: "Comment already upvoted",
           type: "error",
         })
       );
@@ -153,7 +153,7 @@ export const downVoteComment = createAsyncThunk(
     } catch {
       thunkAPI.dispatch(
         addToast({
-          message: "Couldn't downvote the comment",
+          message: "Comment already downvoted",
           type: "error",
         })
       );

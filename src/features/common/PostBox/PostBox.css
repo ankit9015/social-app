@@ -17,6 +17,31 @@
   gap: 1rem;
 }
 
+.post-box__img-wrapper {
+  width: 100%;
+  max-height: 30rem;
+  position: relative;
+}
+
+.post-box__img-wrapper .more-image {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background-color: var(--dark-gray);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.post-box__img {
+  width: 100%;
+  height: auto;
+  max-height: 30rem;
+  object-fit: contain;
+  border: 1px solid;
+  margin-top: 1rem;
+  padding: 10px;
+}
+
 .post-box__header {
   gap: 5px;
   flex-wrap: wrap;
@@ -33,6 +58,7 @@
 .post-box__content {
   margin-top: 1rem;
   margin-bottom: 1rem;
+  overflow-wrap: break-word;
 }
 
 .post-box__options-modal {

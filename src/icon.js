@@ -28,6 +28,8 @@ import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import CloseIcon from "@mui/icons-material/Close";
 import PostAddIcon from "@mui/icons-material/PostAdd";
+import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
+import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
 export {
   HomeOutlinedIcon,
   RocketOutlinedIcon,
@@ -59,4 +61,6 @@ export {
   ArrowDropDownIcon,
   CloseIcon,
   PostAddIcon,
+  PhotoLibraryIcon,
+  AddPhotoAlternateOutlinedIcon,
 };

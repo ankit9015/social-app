@@ -14,7 +14,7 @@ import "./Sidebar.css";
 import NavOption from "../common/NavOption/NavOption";
 import UserOption from "../common/UserOption/UserOption";
 import { useDispatch, useSelector } from "react-redux";
-import { Modal, PostEditor } from "../common";
+import { Modal, PostsModalEditor } from "../common";
 import { useWindowSize } from "../../helperFunction";
 import { logout } from "../auth/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -94,7 +94,7 @@ function Sidebar({ sidebarToggle, setSidebarToggle }) {
           <span className="text-md">Create Post</span>
           {showModal && (
             <Modal>
-              <PostEditor closeEditor={() => setShowModal(false)} />
+              <PostsModalEditor closeEditor={() => setShowModal(false)} />
             </Modal>
           )}
         </button>

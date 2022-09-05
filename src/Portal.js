@@ -18,7 +18,6 @@ function Portal({ children }) {
     el.setAttribute("data-theme", isDarkTheme ? "dark" : "light");
     return () => el.removeAttribute("data-theme");
   }, [isDarkTheme]);
-
   return createPortal(children, el);
 }
 

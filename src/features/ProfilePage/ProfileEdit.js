@@ -14,6 +14,7 @@ function ProfileEdit({ onSave }) {
     bio: user.bio ?? "",
     website: user.website ?? "",
     profileImage: user.profileImage ?? null,
+    coverImage: user.coverImage ?? null,
   });
 
   const submitHandler = () => {
@@ -35,30 +36,60 @@ function ProfileEdit({ onSave }) {
         </button>
       </div>
       <div className="text-md profile-editor__form flex-column">
-        <div className="avatar__wrapper">
-          <Avatar
-            className="profile__avatar"
-            sx={{ width: "8rem", height: "8rem" }}
-            src={formData.profileImage}
-            alt="profile-image"
-          />
-          <label htmlFor="profileImage">
-            <AddAPhotoOutlinedIcon fontSize="large" />
-          </label>
-          <input
-            className="avatar__img-input--hidden"
-            type="file"
-            accept="image/*"
-            alt="profile-image"
-            name="profileImage"
-            id="profileImage"
-            onChange={(e) =>
-              setFormData({
-                ...formData,
-                profileImage: URL.createObjectURL(e.target.files[0]),
-              })
-            }
-          />
+        <div className="profile-editor__images-wrapper">
+          <div className="cover__wrapper">
+            {formData?.coverImage ? (
+              <img
+                className="cover-image"
+                src={formData?.coverImage}
+                alt="cover"
+              />
+            ) : (
+              <div className="cover-image"></div>
+            )}
+            <label htmlFor="coverImage">
+              <AddAPhotoOutlinedIcon fontSize="large" />
+            </label>
+            <input
+              className="cover__img-input--hidden"
+              type="file"
+              accept="image/*"
+              alt="cover-image"
+              name="coverImage"
+              id="coverImage"
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  coverImage: URL.createObjectURL(e.target.files[0]),
+                })
+              }
+            />
+          </div>
+          <div className="avatar__wrapper">
+            <Avatar
+              className="profile__avatar"
+              sx={{ width: "8rem", height: "8rem" }}
+              src={formData.profileImage}
+              alt="profile-image"
+            />
+            <label htmlFor="profileImage">
+              <AddAPhotoOutlinedIcon fontSize="large" />
+            </label>
+            <input
+              className="avatar__img-input--hidden"
+              type="file"
+              accept="image/*"
+              alt="profile-image"
+              name="profileImage"
+              id="profileImage"
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  profileImage: URL.createObjectURL(e.target.files[0]),
+                })
+              }
+            />
+          </div>
         </div>
         <div>
           <label htmlFor="firstName">First name</label>

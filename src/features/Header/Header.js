@@ -10,11 +10,12 @@ import { toggleTheme } from "../theme/themeSlice";
 import { SearchBox } from "../common";
 
 import "./Header.css";
+import { useNavigate } from "react-router-dom";
 
 function Header({ setSidebarToggle, forbiddenLocation }) {
   const { isDarkTheme } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   return (
     <header className="header">
       <div className="flex-row text-md">
@@ -26,7 +27,7 @@ function Header({ setSidebarToggle, forbiddenLocation }) {
             <MenuIcon fontSize="large" />
           </span>
         )}
-        <p className="logo text-md">
+        <p className="logo text-md pointer" onClick={() => navigate("/home")}>
           <PostAddIcon fontSize="large" /> Post-It
         </p>
         {!forbiddenLocation && (
@@ -35,7 +36,7 @@ function Header({ setSidebarToggle, forbiddenLocation }) {
           </div>
         )}
         <button
-          className="header__theme-button"
+          className="header__theme-button pointer"
           onClick={() => dispatch(toggleTheme())}
         >
           {isDarkTheme ? (

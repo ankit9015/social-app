@@ -26,6 +26,10 @@ function FilterDropdown() {
     }
   }, [filterBy, dispatch]);
 
+  useEffect(() => {
+    dispatch(filterLatestPosts());
+  }, [dispatch]);
+
   return (
     <div
       ref={filterRef}

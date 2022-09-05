@@ -6,12 +6,11 @@ function FollowUnfollowButton({ currUser }) {
   const dispatch = useDispatch();
   const { user, authToken } = useSelector((state) => state.auth);
   let isFollowing = user.following.some(
-    (follow) => follow._id === currUser._id
+    (follow) => follow?.username === currUser?.username
   );
 
   const style = {
-    paddingLeft: "0.5rem",
-    paddingRight: "0.5rem",
+    width: "8rem",
     boxSizinf: "border-box",
   };
   return (

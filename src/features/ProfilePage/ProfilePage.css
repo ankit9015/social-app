@@ -5,20 +5,18 @@
 }
 
 .profile__avatar {
-  margin: 1rem;
+  margin: auto;
 }
 
 .profile__name,
 .profile__username {
   line-height: normal;
-}
-
-.profile__username {
-  margin-bottom: 1rem;
+  text-align: center;
 }
 
 .profile__edit--button {
   padding: 0 1rem;
+  margin-top: 1rem;
 }
 
 .profile__bio {
@@ -67,12 +65,14 @@
   margin: 2rem auto;
 }
 
-.avatar__img-input--hidden {
+.avatar__img-input--hidden,
+.cover__img-input--hidden {
   display: none;
 }
 
 .profile-editor .avatar__wrapper {
   position: relative;
+  top: -9rem;
 }
 
 .profile-editor .avatar__wrapper > label {
@@ -84,9 +84,66 @@
   color: var(--primary-color);
 }
 
+.cover__wrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.cover__wrapper > label {
+  position: absolute;
+  top: 5rem;
+  left: 2.5rem;
+
+  transform: translate(-50%, -50%);
+  color: var(--primary-color);
+}
+
 .profile__follow-list,
 .profile__posts {
   margin-bottom: 2rem;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+}
+
+.profile__images {
+  width: 100%;
+  padding-bottom: 5rem;
+  position: relative;
+}
+
+.profile__images .profile__avatar {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.cover-image {
+  width: 100%;
+  min-height: 20rem;
+  aspect-ratio: 2;
+  object-fit: cover;
+  background-color: rgb(232, 226, 226);
+  border: 1px solid;
+}
+
+.profile-editor__images-wrapper {
+  width: 100%;
+  height: 25rem;
+}
+
+@media screen and (max-width: 399px) {
+  .profile-editor__images-wrapper {
+    height: 20rem;
+  }
+
+  .cover__wrapper {
+    height: auto;
+  }
+
+  .cover__wrapper > label {
+    position: absolute;
+    left: 2rem;
+  }
 }

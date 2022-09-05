@@ -63,6 +63,18 @@ select:-webkit-autofill {
   -webkit-text-fill-color: var(--global-color) !important;
 }
 
+.icon-button {
+  background-color: transparent;
+  color: var(--global-color);
+  padding: 0;
+  border: none;
+}
+
+.no-link {
+  text-decoration: none;
+  color: var(--global-color);
+}
+
 @media screen and (min-width: 500px) {
   html {
     font-size: 62.5%;
