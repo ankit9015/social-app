@@ -36,5 +36,25 @@
 .post-editor__post-button {
   color: var(--white);
   padding: 0 1rem;
+  margin-left: 1rem;
+}
+
+.post-editor__images-input--hidden {
+  display: none;
+}
+
+.post-editor__input-files {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-editor__image {
   margin-left: auto;
+}
+
+.char-count {
+  margin-left: auto;
+  width: fit-content;
+  line-height: 0;
 }

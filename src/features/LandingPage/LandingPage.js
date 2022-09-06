@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { PostAddIcon } from "../../icon";
 import "./LandingPage.css";
 
 function LandingPage() {
   const navigate = useNavigate();
+  useEffect(() => {
+    document.title = "Post-it";
+  });
   return (
     <main className="landing-page flex-row">
       <section className="landing-page__image">

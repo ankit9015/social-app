@@ -1,28 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { followUser, unfollowUser } from "../../ProfilePage/ProfilePageSlice";
-import { useToast } from "../Toast/ToastProvider";
 
 function FollowUnfollowButton({ currUser }) {
   const dispatch = useDispatch();
   const { user, authToken } = useSelector((state) => state.auth);
-  const { message: usersMessage } = useSelector((state) => state.users);
   let isFollowing = user.following.some(
-    (follow) => follow._id === currUser._id
+    (follow) => follow?.username === currUser?.username
   );
-  const { addToast } = useToast();
 
   const style = {
-    paddingLeft: "0.5rem",
-    paddingRight: "0.5rem",
+    width: "8rem",
     boxSizinf: "border-box",
   };
-
-  useEffect(() => {
-    if (usersMessage) {
-      addToast(usersMessage);
-    }
-  }, [usersMessage, addToast]);
   return (
     <>
       {isFollowing ? (

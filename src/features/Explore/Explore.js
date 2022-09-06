@@ -3,6 +3,7 @@ import "./Explore.css";
 import { useDispatch, useSelector } from "react-redux";
 import { FilterDropdown, PostBox } from "../common";
 import { getPosts } from "../HomePage/HomePageSlice";
+import { filterLatestPosts } from "../posts/postsSlice";
 
 function Explore() {
   const { posts } = useSelector((state) => state.posts);
@@ -10,8 +11,13 @@ function Explore() {
   useEffect(() => {
     (async () => {
       await dispatch(getPosts()).unwrap();
+      dispatch(filterLatestPosts());
     })();
   }, [dispatch]);
+
+  useEffect(() => {
+    document.title = "Explore";
+  }, []);
 
   return (
     <main className="explore flex-column">

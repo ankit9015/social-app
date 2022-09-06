@@ -1,20 +1,49 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./HomePage.css";
-import { FilterDropdown, Modal, PostBox, PostEditor } from "../common";
+import {
+  FilterDropdown,
+  Modal,
+  PostBox,
+  PostEditor,
+  PostsModalEditor,
+} from "../common";
+import { getPosts } from "./HomePageSlice";
 import { AddIcon } from "../../icon";
 import { useDispatch, useSelector } from "react-redux";
-import { getPosts } from "./HomePageSlice";
+import { createSelector } from "@reduxjs/toolkit";
+import { filterLatestPosts } from "../posts/postsSlice";
 
 function HomePage() {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
-  const { posts } = useSelector((state) => state.posts);
+  const state = useSelector((state) => state);
+
+  const postsFromFollowedUsers = createSelector(
+    [(state) => state.posts.posts, (state) => state.auth.user],
+    (posts, user) => {
+      const following = user.following.map((user) => user.username);
+      const postsFollowing = posts.filter((post) =>
+        [...following, user.username].includes(post.username)
+      );
+      return postsFollowing;
+    }
+  );
+
+  const posts = useMemo(
+    () => postsFromFollowedUsers(state),
+    [postsFromFollowedUsers, state]
+  );
 
   useEffect(() => {
     (async () => {
       await dispatch(getPosts()).unwrap();
+      dispatch(filterLatestPosts());
     })();
   }, [dispatch]);
+
+  useEffect(() => {
+    document.title = "Home";
+  }, []);
 
   return (
     <main className="home flex-column">
@@ -22,10 +51,10 @@ function HomePage() {
         className="create-post__floating-button button button-primary text-lg"
         onClick={() => setShowModal((prev) => !prev)}
       >
-        <AddIcon fontSize="inherit" />
+        <AddIcon fontSize="large" />
         {showModal && (
           <Modal>
-            <PostEditor closeEditor={() => setShowModal(false)} />
+            <PostsModalEditor closeEditor={() => setShowModal(false)} />
           </Modal>
         )}
       </div>

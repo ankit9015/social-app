@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./FollowList.css";
 import AvatarInfo from "../AvatarInfo/AvatarInfo";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,25 +11,27 @@ function FollowList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
+  const getUsers = useCallback(getAllUsers, []);
   useEffect(() => {
     (async () => {
-      const data = await dispatch(getAllUsers()).unwrap();
+      const data = await dispatch(getUsers()).unwrap();
       setAllUsers(data.users);
     })();
-  }, [dispatch]);
+  }, [dispatch, getUsers]);
 
   const isFollower = (suggestion) =>
-    user.followers.find((follower) => follower._id === suggestion._id);
+    user.followers.find((follower) => {
+      return follower?.username === suggestion?.username;
+    });
 
   const suggestedUsers = allUsers
-    ? allUsers.filter((_user) => _user.username !== user.username)
+    ? allUsers.filter((_user) => _user?.username !== user?.username)
     : [];
 
   return (
     <div className="follow-list flex-column">
       <div className="follow-list__header flex-row">
-        <h6 className="text-md">Who to follow</h6>
-        <span className="text-md">Show More</span>
+        <h6 className="text-md">People you may know</h6>
       </div>
       <ul>
         {suggestedUsers &&

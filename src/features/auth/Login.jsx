@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -43,6 +43,10 @@ function Login() {
     username: "ankitjoshi",
     password: "ankit123",
   };
+
+  useEffect(() => {
+    document.title = "Login";
+  });
   return (
     <div className="login ">
       <h1 className="login__header text-lg font-bold text-center">Login</h1>

@@ -1,29 +1,33 @@
 import React, { useEffect } from "react";
-import { defaultUsersMessage } from "../../user/userSlice";
+import { removeToast } from "./ToastSlice";
 import "./Toast.css";
-import { useToast } from "./ToastProvider";
 import { useDispatch } from "react-redux";
-import { defaultPostssMessage } from "../../posts/postsSlice";
 import { CloseIcon } from "../../../icon";
 
-function Toast({ children, id }) {
-  const { removeToast } = useToast();
+const TOAST_TYPE = {
+  SUCCESS: { backgroundColor: "#c8e6c9", color: "#1b5e20" },
+  ERROR: { backgroundColor: "#ffcdd2", color: "#b71c1c" },
+  INFO: { backgroundColor: "#90caf9", color: "#2962ff" },
+};
+
+function Toast({ id, message, type, timeout }) {
   const dispatch = useDispatch();
   useEffect(() => {
     const timer = setTimeout(() => {
-      removeToast(id);
-    }, 3000);
+      dispatch(removeToast({ id }));
+    }, timeout);
 
     return () => {
       clearTimeout(timer);
-      dispatch(defaultUsersMessage());
-      dispatch(defaultPostssMessage());
     };
-  }, [id, dispatch, removeToast]);
+  }, [id, timeout, dispatch]);
 
   return (
-    <div className="toast text-md flex-row">
-      {children} <CloseIcon onClick={() => removeToast(id)} fontSize="large" />
+    <div
+      className="toast text-md flex-row"
+      style={TOAST_TYPE[type.toUpperCase()]}
+    >
+      {message} <CloseIcon onClick={() => removeToast(id)} fontSize="large" />
     </div>
   );
 }

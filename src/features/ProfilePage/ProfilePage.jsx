@@ -33,19 +33,34 @@ function ProfilePage() {
     })();
   }, [dispatch, username]);
 
+  useEffect(() => {
+    document.title = `${profile?.firstName + " " + profile?.lastName}`;
+  }, [profile?.firstName, profile?.lastName]);
+
   return (
     <main className="profile flex-column">
       <section className="profile__info flex-column text-md">
-        <Avatar
-          className="profile__avatar"
-          sx={{ width: "8rem", height: "8rem" }}
-          src={profile?.profileImage}
-        />
+        <div className="profile__images">
+          {profile?.coverImage ? (
+            <img
+              className="cover-image"
+              src={profile?.coverImage}
+              alt="cover"
+            />
+          ) : (
+            <div className="cover-image"></div>
+          )}
 
+          <Avatar
+            className="profile__avatar"
+            sx={{ width: "10rem", height: "10rem" }}
+            src={profile?.profileImage}
+          />
+        </div>
         <h1 className="profile__name">
           {profile?.firstName + " " + profile?.lastName}
         </h1>
-        <h1 className="profile__username">{profile?.username}</h1>
+        <h1 className="profile__username">@{profile?.username}</h1>
         {user.username === profile?.username ? (
           <button
             onClick={() => setShowEditModal((prev) => !prev)}

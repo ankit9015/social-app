@@ -7,6 +7,8 @@ import ProfilePage from "./ProfilePage/ProfilePage";
 import Post from "./Post/Post";
 import ProfileEdit from "./ProfilePage/ProfileEdit";
 import LandingPage from "./LandingPage/LandingPage";
+import PageNotFound from "./PageNotFound/PageNotFound";
+import SearchResults from "./SearchResults/SearchResults";
 export {
   HomePage,
   Explore,
@@ -17,4 +19,6 @@ export {
   ProfilePage,
   ProfileEdit,
   LandingPage,
+  PageNotFound,
+  SearchResults,
 };

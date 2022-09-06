@@ -7,6 +7,7 @@ import {
   FavoriteBorderIcon,
   FavoriteIcon,
   MoreHorizIcon,
+  PhotoLibraryIcon,
 } from "../../../icon";
 import "./PostBox.css";
 import Modal from "../Modal/Modal";
@@ -21,8 +22,9 @@ import {
 } from "./PostBoxSlice";
 import PostBoxEditModal from "./PostBoxEditModal";
 import { useLocation, useNavigate } from "react-router-dom";
-import PostEditor from "../PostEditor/PostEditor";
 import { followUser, unfollowUser } from "../../ProfilePage/ProfilePageSlice";
+import PostsModalEditor from "../PostEditorModal/PostsModalEditor";
+import ImageModal from "../ImageModal/ImageModal";
 
 function PostBox({ post }) {
   const createdAt = new Date(post.createdAt);
@@ -47,7 +49,7 @@ function PostBox({ post }) {
   const isFollowing = user.following.find(
     (follow) => follow.username === post.username
   );
-
+  const isPostPage = location.pathname === "/" + post.username + "/" + post._id;
   return (
     <div className="post-box flex-row">
       <div className="post-box__left">
@@ -151,6 +153,37 @@ function PostBox({ post }) {
           className="post-box__content text-md"
         >
           <p>{post.content}</p>
+
+          {isPostPage ? (
+            <div className="flex-column">
+              {post.images.map((image, idx) => {
+                let curr_image = image;
+                return (
+                  <ImageModal
+                    key={idx}
+                    className="post-box__img pointer"
+                    src={curr_image.src}
+                    alt={`${curr_image.alt}`}
+                  />
+                );
+              })}
+            </div>
+          ) : (
+            post.images?.length > 0 && (
+              <div className="post-box__img-wrapper">
+                <img
+                  className="post-box__img"
+                  src={post.images && post.images[0]?.src}
+                  alt={`${post.images[0].alt}`}
+                />
+                {post.images?.length > 1 && (
+                  <span className="more-image text-md">
+                    +{post.images.length} <PhotoLibraryIcon fontSize="large" />
+                  </span>
+                )}
+              </div>
+            )
+          )}
         </div>
         {isLocationPost && (
           <p className="text-gray post__time">
@@ -188,7 +221,7 @@ function PostBox({ post }) {
               <span className="text-md">{post.comments?.length}</span>
               {commentModal && (
                 <Modal>
-                  <PostEditor
+                  <PostsModalEditor
                     commentOn={post}
                     closeEditor={() => setcommentModal(false)}
                   />

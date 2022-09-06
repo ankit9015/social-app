@@ -12,12 +12,12 @@ import {
   ThumbUpOutlinedIcon,
 } from "../../../icon";
 import Modal from "../Modal/Modal";
-import PostEditor from "../PostEditor/PostEditor";
 import { deleteComment, downVoteComment, upVoteComment } from "./CommentSlice";
 import { useNavigate } from "react-router-dom";
 import { followUser, unfollowUser } from "../../ProfilePage/ProfilePageSlice";
+import PostsModalEditor from "../PostEditorModal/PostsModalEditor";
 
-function Comment({ comment, post }) {
+function Comment({ comment: _comment, post }) {
   const [showOptionsModal, setShowOptionsModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const { coords, updateCoords } = usePosition();
@@ -25,6 +25,7 @@ function Comment({ comment, post }) {
   const { authToken, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [comment, setComment] = useState(_comment);
 
   const isUserComment = comment.username === user.username;
   const hasUpVoted = comment.votes.upvotedBy.find(
@@ -102,13 +103,14 @@ function Comment({ comment, post }) {
                         {showEditModal && (
                           <Modal>
                             <div className="comment__editor">
-                              <PostEditor
+                              <PostsModalEditor
                                 currPost={comment}
                                 commentOn={post}
                                 closeEditor={() => {
                                   setShowEditModal((prev) => false);
                                   setShowOptionsModal(false);
                                 }}
+                                setComment={setComment}
                               />
                             </div>
                           </Modal>
@@ -137,6 +139,16 @@ function Comment({ comment, post }) {
         </div>
         <div className="comment__content text-md">
           <p>{comment.content}</p>
+          <div className="flex-column">
+            {comment?.images?.map((image, idx) => (
+              <img
+                key={idx}
+                className="post-box__img"
+                src={image.src}
+                alt="post"
+              />
+            ))}
+          </div>
         </div>
         <div className="comment__footer flex-row">
           <span
@@ -147,7 +159,14 @@ function Comment({ comment, post }) {
                   commentId: comment._id,
                   authToken,
                 })
-              ).unwrap()
+              )
+                .unwrap()
+                .then((res) => {
+                  const comment = res.comments.find(
+                    (c) => c._id === _comment._id
+                  );
+                  comment && setComment(comment);
+                })
             }
           >
             {hasUpVoted ? (
@@ -167,7 +186,14 @@ function Comment({ comment, post }) {
                   commentId: comment._id,
                   authToken,
                 })
-              ).unwrap()
+              )
+                .unwrap()
+                .then((res) => {
+                  const comment = res.comments.find(
+                    (c) => c._id === _comment._id
+                  );
+                  comment && setComment(comment);
+                })
             }
           >
             {hasDownVoted ? (

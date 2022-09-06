@@ -55,6 +55,26 @@ html {
   align-items: center;
 }
 
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  box-shadow: none;
+  -webkit-box-shadow: 0 0 0 1000px var(--global-backdrop) inset !important;
+  -webkit-text-fill-color: var(--global-color) !important;
+}
+
+.icon-button {
+  background-color: transparent;
+  color: var(--global-color);
+  padding: 0;
+  border: none;
+}
+
+.no-link {
+  text-decoration: none;
+  color: var(--global-color);
+}
+
 @media screen and (min-width: 500px) {
   html {
     font-size: 62.5%;
