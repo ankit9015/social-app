@@ -4,6 +4,7 @@ import { CheckboxInput, EmailInput, PasswordInput, TextInput } from "../common";
 import { signupUser } from "./authSlice";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import { addToast } from "../common/Toast/ToastSlice";
 
 function Signup() {
   const dispatch = useDispatch();
@@ -25,17 +26,22 @@ function Signup() {
       if (key === "agreeTC" && !value) return;
       if (value === "") return;
     }
-    if (formData.password === formData.confirmPassword) {
-      signupHandler(signupForm);
-    } else {
-      alert("Please enter matching password");
+    if (formData.password !== formData.confirmPassword) {
+      dispatch(
+        addToast({
+          message: "Please enter matching passwords",
+          type: "error",
+        })
+      );
+      return;
     }
+    signupHandler(signupForm);
   };
 
   const signupHandler = async (signupForm) => {
     try {
       dispatch(signupUser(signupForm)).unwrap();
-      location.state ? navigate(location.state.from) : navigate("/");
+      location.state ? navigate(location.state.from) : navigate("/home");
     } catch (err) {
       console.log(err);
     }
@@ -88,6 +94,7 @@ function Signup() {
               setFormData({ ...formData, username: e.target.value })
             }
             required
+            invalidMessage="Username can not be empty"
           />
         </div>
 
@@ -99,6 +106,7 @@ function Signup() {
               setFormData({ ...formData, email: e.target.value })
             }
             required
+            invalidMessage="Enter valid email address"
           />
         </div>
         <div className="signup__password">
@@ -110,6 +118,7 @@ function Signup() {
               setFormData({ ...formData, password: e.target.value })
             }
             required
+            invalidMessage="Password can not be empty"
           />
         </div>
         <div className="signup__password">
@@ -117,11 +126,19 @@ function Signup() {
             labelContent="Confirm Password"
             name="confirmPassword"
             value={formData.confirmPassword ?? ""}
-            changeHandler={(e) =>
-              setFormData({ ...formData, confirmPassword: e.target.value })
-            }
+            changeHandler={(e) => {
+              setFormData({ ...formData, confirmPassword: e.target.value });
+            }}
             required
-          />
+            invalidMessage="Enter a matching Password"
+          >
+            {formData.confirmPassword !== "" &&
+              formData.password !== formData.confirmPassword && (
+                <p className="text-md form-error">
+                  <small>Enter a matching password</small>
+                </p>
+              )}
+          </PasswordInput>
         </div>
         <div className="signup__TC">
           <CheckboxInput

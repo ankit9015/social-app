@@ -41,3 +41,7 @@
 .signup__row > * {
   flex: 1 0 10rem;
 }
+
+.form-error {
+  color: rgb(245, 76, 76);
+}
