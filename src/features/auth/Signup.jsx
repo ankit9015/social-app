@@ -20,6 +20,16 @@ function Signup() {
     agreeTC: false,
   });
 
+  const dummyData = {
+    firstName: "Jane",
+    lastName: "Doe",
+    username: "janeDoe",
+    email: "jane@gmail.com",
+    password: "jane123",
+    confirmPassword: "jane123",
+    agreeTC: true,
+  };
+
   const submitHandler = (e, signupForm) => {
     e.preventDefault();
     for (const [key, value] of Object.entries(formData)) {
@@ -135,7 +145,7 @@ function Signup() {
             {formData.confirmPassword !== "" &&
               formData.password !== formData.confirmPassword && (
                 <p className="text-md form-error">
-                  <small>Enter a matching password</small>
+                  <small>Enter matching password</small>
                 </p>
               )}
           </PasswordInput>
@@ -153,6 +163,16 @@ function Signup() {
         </div>
         <button className="text-md button button-primary" type="submit">
           Create new account
+        </button>
+        <button
+          className="text-md button button-outline-secondary"
+          onClick={(e) => {
+            setFormData(dummyData);
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+        >
+          Fill Dummy data
         </button>
         <p
           className="text-md text-center pointer"
