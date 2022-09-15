@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { addToast } from "../common/Toast/ToastSlice";
 import {
   editUserInfo,
   followUser,
@@ -11,25 +12,43 @@ const user = JSON.parse(localStorage.getItem("user"));
 
 export const loginUser = createAsyncThunk(
   "auth/login",
-  async ({ username, password }) => {
-    const { data } = await axios.post("/api/auth/login", {
-      username,
-      password,
-    });
-    return data;
+  async ({ username, password }, thunkAPI) => {
+    try {
+      const { data } = await axios.post("/api/auth/login", {
+        username,
+        password,
+      });
+      return data;
+    } catch {
+      thunkAPI.dispatch(
+        addToast({
+          message: "Incorrect username or password",
+          type: "error",
+        })
+      );
+    }
   }
 );
 export const signupUser = createAsyncThunk(
   "auth/signup",
-  async ({ username, password, firstName, lastName, email }) => {
-    const { data } = await axios.post("/api/auth/signup", {
-      username,
-      password,
-      firstName,
-      lastName,
-      email,
-    });
-    return data;
+  async ({ username, password, firstName, lastName, email }, thunkAPI) => {
+    try {
+      const { data } = await axios.post("/api/auth/signup", {
+        username,
+        password,
+        firstName,
+        lastName,
+        email,
+      });
+      return data;
+    } catch {
+      thunkAPI.dispatch(
+        addToast({
+          message: "Signup failed",
+          type: "error",
+        })
+      );
+    }
   }
 );
 

@@ -9,9 +9,12 @@ function PasswordInput({
   value,
   changeHandler,
   required,
+  invalidMessage,
+  children,
 }) {
   const id = useId();
   const [showPassword, setShowPassword] = useState(false);
+
   return (
     <>
       <label
@@ -22,6 +25,7 @@ function PasswordInput({
       >
         {labelContent}
       </label>
+      {children}
       <div className="flex-row password">
         <input
           className="socketui-input password__input text-md"
@@ -32,6 +36,10 @@ function PasswordInput({
           value={value}
           onChange={changeHandler}
           required={required}
+          onInvalid={(e) =>
+            invalidMessage && e.target.setCustomValidity(invalidMessage)
+          }
+          onInput={(e) => e.target.setCustomValidity("")}
         />
         <span onClick={() => setShowPassword((prev) => !prev)}>
           {showPassword ? (

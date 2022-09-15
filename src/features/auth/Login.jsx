@@ -25,7 +25,7 @@ function Login() {
         })
       );
     }
-    if (loginForm.username !== "" && loginForm.password !== "") {
+    if (loginForm.password !== "" && loginForm.password !== "") {
       loginHandler(loginForm);
     }
   };
@@ -64,6 +64,7 @@ function Login() {
               setFormData({ ...formData, username: e.target.value })
             }
             required
+            invalidMessage="Username can not be empty"
           />
         </div>
         <div className="login__password">
@@ -76,6 +77,7 @@ function Login() {
               setFormData({ ...formData, password: e.target.value })
             }
             required
+            invalidMessage="Password can not be empty"
           />
         </div>
         <div className="flex-row login__row">

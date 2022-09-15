@@ -7,6 +7,7 @@ function EmailInput({
   value,
   changeHandler,
   required,
+  invalidMessage,
 }) {
   const id = useId();
   return (
@@ -28,6 +29,10 @@ function EmailInput({
         value={value}
         onChange={changeHandler}
         required={required}
+        onInvalid={(e) =>
+          invalidMessage && e.target.setCustomValidity(invalidMessage)
+        }
+        onInput={(e) => e.target.setCustomValidity("")}
       />
     </>
   );

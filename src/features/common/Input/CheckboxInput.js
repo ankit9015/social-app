@@ -7,6 +7,7 @@ function CheckboxInput({
   checked,
   changeHandler,
   required,
+  invalidMessage,
 }) {
   const id = useId();
   return (
@@ -18,6 +19,10 @@ function CheckboxInput({
         name={name}
         onChange={changeHandler}
         required={required}
+        onInvalid={(e) =>
+          invalidMessage && e.target.setCustomValidity(invalidMessage)
+        }
+        onInput={(e) => e.target.setCustomValidity("")}
       />
       <label
         htmlFor={id}
