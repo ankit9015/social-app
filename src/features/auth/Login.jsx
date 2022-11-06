@@ -71,7 +71,7 @@ function Login() {
           <PasswordInput
             labelContent="Password"
             name="password"
-            placeholder="*****"
+            placeholder="*******"
             value={formData.password ?? ""}
             changeHandler={(e) =>
               setFormData({ ...formData, password: e.target.value })
